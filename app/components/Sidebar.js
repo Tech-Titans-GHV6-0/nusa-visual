@@ -18,6 +18,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
+import { usePathname } from "next/navigation"; // Tambahkan ini di atas
 
 const menuItems = [
   { icon: <Home size={16} />, tooltip: "Home", href: "/" },
@@ -38,6 +39,7 @@ export default function Sidebar() {
   const { data: session, status } = useSession();
   const [hovered, setHovered] = useState(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   if (status === "loading") return null;
 
@@ -88,11 +90,10 @@ export default function Sidebar() {
     flex md:flex-col
     items-center justify-around md:justify-start
     py-2 md:py-6 gap-0 md:gap-6
-    md:rounded-r-2xl
     transition-all
   `}
       >
-        <Link href="/profile">
+        <Link href="/">
           <div className="hidden md:block p-2 md:p-4 rounded-xl transition-colors cursor-pointer">
             <Image
               src="https://res.cloudinary.com/dw8akacak/image/upload/v1753359729/logo_nusa_visual_gdbi9z.png"
@@ -114,7 +115,9 @@ export default function Sidebar() {
             <Link href={item.href}>
               <motion.div
                 whileHover={{ scale: 1.2 }}
-                className="text-[#433D3D] p-2 md:p-4 rounded-xl hover:bg-black/20 transition-colors cursor-pointer"
+                className={`text-[#433D3D] p-2 md:p-4 rounded-xl transition-colors cursor-pointer ${
+                  pathname === item.href ? "bg-black/30" : "hover:bg-black/20"
+                }`}
               >
                 {item.icon}
               </motion.div>
