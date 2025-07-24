@@ -11,7 +11,7 @@ export async function POST(req) {
   }
 
   const body = await req.json();
-  const { name, email, avatar, region, origin } = body;
+  const { name, email, avatar, region, origin, interests } = body;
 
   try {
     const updated = await prisma.user.update({
@@ -21,7 +21,8 @@ export async function POST(req) {
         email,
         avatar,
         region,
-        origin
+        origin,
+        interests
       },
     });
 

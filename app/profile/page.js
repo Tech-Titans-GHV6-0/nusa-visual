@@ -14,6 +14,7 @@ export default function ProfilePage() {
     avatar: "",
     region: "",
     origin: "",
+    interests: [],
   });
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function ProfilePage() {
         avatar: data.avatar || "/default-avatar.png",
         region: data.region,
         origin: data.origin,
+        interests: data.interests || [],
       });
     };
 
@@ -57,9 +59,11 @@ export default function ProfilePage() {
     });
 
     setEditing(false);
+    window.location.reload();
   };
 
   if (!user) return <div className="p-4">Loading...</div>;
+
 
   return (
     <div className="flex min-h-screen bg-[#433D3D]">
@@ -135,6 +139,12 @@ export default function ProfilePage() {
             <div>
               <label className="block text-sm text-black">Origin</label>
               <div className="text-black">{user.origin}</div>
+            </div>
+            <div>
+              <label className="block text-sm text-black">Interest</label>
+              <div className="text-black">
+                {formData.interests.join(", ") || "-"}
+              </div>
             </div>
           </div>
         </div>
