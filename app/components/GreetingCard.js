@@ -28,7 +28,7 @@ export default function GreetingCard({ username }) {
   }, []);
 
   return (
-    <div className="px-4 py-4 bg-[#433D3D] border-b-2 border-[#B49C78] flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+    <div className="px-4 py-4 bg-[#433D3D] flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
       <div>
         <h2 className="text-3xl font-bold text-[#E2D8CC]">
           {greeting}, {username}
