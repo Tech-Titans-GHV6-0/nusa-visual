@@ -3,6 +3,7 @@ const budayaData = [
     nama: "Aceh",
     posisi: [5.5502, 95.316],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_aceh_owj0ld.svg",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753367909/Tari_Saman_y6gjks.jpg",
     lagu: "Bungong Jeumpa",
     makanan: "Mie Aceh",
     suku: [
@@ -30,6 +31,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752645824/pin_provinsi_sumut_uf8gyx.svg",
     lagu: "Butet",
     makanan: "Babi Panggang Karo",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370460/Sumut_Tor-Tor_Pose_svw5x3.jpg",
     suku: ["Melayu", "Batak", "Nias"],
     julukan: "Tanah Batak",
     deskripsi:
@@ -40,6 +42,7 @@ const budayaData = [
     posisi: [-0.9471, 100.4172],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643986/pin_provinsi_sumbar_nh58ie.svg",
     lagu: "Ayam Den Lapeh",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753367939/Tari_Piring_dan_Pecahan_Kaca_o1sld3.jpg",
     makanan: "Rendang",
     suku: ["Minangkabau", "Mentawai"],
     julukan: "Ranah Minang",
@@ -54,6 +57,7 @@ const budayaData = [
     makanan: "Gulai Ikan Patin",
     suku: ["Bonai", "Sakai", "TalangMama", "Akit", "Hutan", "Laut"],
     julukan: "Bumi Lancang Kuning",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753368136/Tari_Zapin_Api_1_lyyk5q.jpg",
     deskripsi:
       "Riau dikenal sebagai pusat budaya Melayu. Lagu Soleram sering dinyanyikan sebagai lagu nina bobo tradisional.",
   },
@@ -63,6 +67,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_kepuluan_riau_pwl9hu.svg",
     lagu: "Segantang Lada",
     makanan: "Otak-Otak",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370905/TARI-MERAWAI-2-1024x576_Kepri_szk5jg.jpg",
     suku: [
       "Melayu Riau",
       "Mapor",
@@ -81,6 +86,7 @@ const budayaData = [
     posisi: [-1.4852, 102.4381],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_jambi_k1oyo3.svg",
     lagu: "Selendang Mayang",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Tari_inai_Jambi_h6obq2.webp",
     makanan: "Gulai Tepek Ikan",
     suku: ["Melayu Jambi"],
     julukan: "Bumi Sepucuk Jambi Sembilan Lurah",
@@ -93,6 +99,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_bengkulu_bxl0xu.svg",
     lagu: "Andun",
     makanan: "Pendap",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Bengkulu_Tarian_Gandai_Asli_Mukomuko_h8tfk4.jpg",
     suku: ["Rejang", "Lembak", "Serawai"],
     julukan: "Bumi Rafflesia",
     deskripsi:
@@ -104,6 +111,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643986/pin_provinsi_sumatra_selatan_qahaxf.svg",
     lagu: "Dek Sangke",
     makanan: "Pempek",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370595/Sumsel_Tari_Kebagh__2017_1_alofqr.jpg",
     suku: [
       "Melayu Palembang",
       "Melayu Pegagan",
@@ -138,6 +146,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_bangka_belitung_cee1se.svg",
     lagu: "Cik Cik Periuk",
     makanan: "Lempah Kuning",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Kep_Babel_Tari_Sepen_vhnrpp.jpg",
     suku: ["Melayu", "Sawang"],
     julukan: "Negeri Serumpun Sebalai",
     deskripsi:
@@ -149,6 +158,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_lampung_bo26rt.svg",
     lagu: "Sang Bumi Ruwa Jurai",
     makanan: "Seruit",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370750/Lampung_Tari_Melinting_tklync.jpg",
     suku: ["Lampung Pepadun", "Saibatin"],
     julukan: "Sai Bumi Ruwa Jurai",
     deskripsi:
@@ -160,6 +170,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_banten_nihzza.svg",
     lagu: "Jereh Bu Guru",
     makanan: "Rabeg",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370899/Banteng_tari-rampak-beduk-980e-dom_ibu2ra.webp",
     suku: ["Badui"],
     julukan: "Bumi Jawara",
     deskripsi:
@@ -171,6 +182,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_dki_qjivqf.svg",
     lagu: "Kicir-Kicir",
     makanan: "Kerak Telor",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Tari-topeng-betawi-foto-travelinkmagz.com__xqnqnk.jpg",
     suku: ["Betawi"],
     julukan: "Kota Metropolitan / Kota Seribu Satu Masalah",
     deskripsi:
@@ -182,6 +194,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_jabar_obiknu.svg",
     lagu: "Manuk Dadali",
     makanan: "Surabi",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370896/Jabar_Tari_Jaipong_dbwsku.jpg",
     suku: ["Sunda"],
     julukan: "Tanah Pasundan",
     deskripsi:
@@ -192,6 +205,7 @@ const budayaData = [
     posisi: [-7.0051, 110.4381],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_jawa_tengah_faeagp.svg",
     lagu: "Gambang Suling",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370724/Jateng-Kesenian-Tari-Babalu-yang-Menjadi-Identitas-Batang.jpg_zuw0gb.webp",
     makanan: "Gudeg",
     suku: ["Jawa"],
     julukan: "Jantung Budaya Jawa",
@@ -204,6 +218,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643986/pin_provinsi_yogyakarta_dyfsin.svg",
     lagu: "Suwe Ora Jamu",
     makanan: "Bakpia",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753367942/Yogyakarta_Indonesia_Prambanan-temple-complex-02_rln4ql.jpg",
     suku: ["Jawa"],
     julukan: "Kota Pelajar",
     deskripsi:
@@ -214,6 +229,7 @@ const budayaData = [
     posisi: [-7.2504, 112.7688],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_jawa_timur_bhzid4.svg",
     lagu: "Rek Ayo Rek",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753367910/Tari_Jaranan_-_Kuda_Lumping_blecpq.jpg",
     makanan: "Rawon",
     suku: ["Jawa", "Madura"],
     julukan: "Bumi Majapahit",
@@ -226,6 +242,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643981/pin_provinsi_bali_wgyxmc.svg",
     lagu: "Janger",
     makanan: "Ayam Betutu",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753367946/Tari_Topeng_at_Bangli__Bali_otqbgv.jpg",
     suku: ["Aga"],
     julukan: "Pulau Dewata",
     deskripsi:
@@ -236,6 +253,7 @@ const budayaData = [
     posisi: [-8.652933, 117.3616],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_ntb_almbhp.svg",
     lagu: "Tebe",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370429/NTB-tarian-nguri-417b1bc5116ee8c5d401b428355ab421_am4eoh.webp",
     makanan: "Sate Rembiga",
     suku: ["Sasak", "Bayan", "Sumbawa", "Mbojo", "Bima", "Mata", "Dompu"],
     julukan: "Bumi Gora",
@@ -248,6 +266,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_ntt_bgsgqc.svg",
     lagu: "Potong Bebek Angsa",
     makanan: "Jagung Bose",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753371054/NTT_Tari-Caci_qhbafi.jpg",
     suku: [
       "Atoni",
       "Manggarai",
@@ -270,6 +289,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643984/pin_provinsi_kalimantan_barat_ua4dxg.svg",
     lagu: "Cik Cik Periuk",
     makanan: "Pengkang",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370873/Kalbar_Tari_Pedang_Mualang_y5kag4.jpg",
     suku: ["Dayak", "Melayu"],
     julukan: "Bumi Khatulistiwa",
     deskripsi:
@@ -282,6 +302,7 @@ const budayaData = [
     lagu: "Naluya",
     makanan: "Juhu Singkah",
     suku: ["Dayak"],
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370448/Tari_Giring-Giring_Kalteng_ey1nmu.jpg",
     julukan: "Bumi Tambun Bungai",
     deskripsi:
       "Dikenal dengan budaya Dayak Ngaju. Lagu Naluya menggambarkan alam dan kehidupan. Juhu Singkah adalah sayur rotan muda.",
@@ -292,6 +313,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643984/pin_provinsi_kalimantan_selatan_iarive.svg",
     lagu: "Ampar-Ampar Pisang",
     makanan: "Soto Banjar",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370451/Kalsel_Tari_Japin_Sigam_nhmydj.jpg",
     suku: ["Dayak", "Banjar"],
     julukan: "Bumi Lambung Mangkurat",
     deskripsi:
@@ -302,6 +324,7 @@ const budayaData = [
     posisi: [0.5022, 117.1537],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643984/pin_provinsi_kalimantan_timur_eirtst.svg",
     lagu: "Indung-Indung",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370429/Kaltim_Tari_Papatai_a2mpzw.webp",
     makanan: "Nasi Bekepor",
     suku: ["Dayak", "Kutai"],
     julukan: "Benua Etam",
@@ -314,6 +337,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_kalimantan_utara_ra67ya.svg",
     lagu: "Tidung",
     makanan: "Kapah",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370722/Kaltara_Tari_Jugit_rdzjjf.jpg",
     suku: [
       "Tidung",
       "Lun Bawang/Lun Dayeh",
@@ -333,6 +357,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_sulawesi_utara_cr7puc.svg",
     lagu: "O Ina Ni Keke",
     makanan: "Tinutuan",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370900/Sulut-Tari-Kabasaranfoto-twitter.combarrykusuma-650x576_zcly3m.png",
     suku: ["Minahasa", "Bolaang", "Mongondow", "Sangihe Talaud"],
     julukan: "Bumi Nyiur Melambai",
     deskripsi:
@@ -344,6 +369,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_gorontalo_ddnwt8.svg",
     lagu: "Molulo",
     makanan: "Binte Biluhuta",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Gorontalo_Tari_Dana-Dana_nxud0l.jpg",
     suku: ["Hulontalo"],
     julukan: "Serambi Madinah",
     deskripsi:
@@ -355,6 +381,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_sulawesi_tengah_tooyx9.svg",
     lagu: "Tope Gugu",
     makanan: "Kaledo",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Sulteng_Tari_Dopalak_po0cby.jpg",
     suku: [
       "Ampana",
       "Balantak",
@@ -390,6 +417,7 @@ const budayaData = [
     makanan: "Jepa",
     suku: ["Mandar", "Mamasa", "Pattae", "Kalumpang", "Mamuju"],
     julukan: "Bumi Tanadoang",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Sulawesi_Barat_Tari-Pallake-696x428_n3ufsl.jpg",
     deskripsi:
       "Provinsi muda ini masih berkembang. Lagu Tanang Dapo berasal dari suku Mandar. Jepa adalah makanan dari singkong dan kelapa.",
   },
@@ -399,6 +427,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_sulawesi_selatan_nbhrq1.svg",
     lagu: "Anging Mammiri",
     makanan: "Coto Makassar",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Sulawesi_Selatan_Tarian-Paduppa-2-1024x683_ghfxia.jpg",
     suku: ["Bugis", "Makassar", "Mandar", "Toraja"],
     julukan: "Bumi Anging Mammiri",
     deskripsi:
@@ -410,6 +439,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_sulawesi_tenggara_lsx3eo.svg",
     lagu: "Tumbu Lulo",
     makanan: "Sinonggi",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370900/Sulut-Tari-Kabasaranfoto-twitter.combarrykusuma-650x576_zcly3m.png",
     suku: [
       "Bugis",
       "Mandar",
@@ -441,6 +471,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_maluku_hwifav.svg",
     lagu: "Rasa Sayange",
     makanan: "Kohu-Kohu",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370444/Maluku_Saureka-reka_jzoif5.jpg",
     suku: ["Alifuru", "Ambon", "Buru", "Kei", "Tanimbar"],
     julukan: "Bumi Seribu Pulau",
     deskripsi:
@@ -452,6 +483,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643985/pin_provinsi_maluku_utara_s0bw94.svg",
     lagu: "Goro-Goro Ne",
     makanan: "Gohu Ikan",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370899/Tari-Soya-Soya-Maluku-Utara.-republika_uojaxj.jpg",
     suku: [
       "Buli",
       "Maba",
@@ -487,6 +519,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_papua_zjjacu.svg",
     lagu: "Apuse",
     makanan: "Papeda",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370444/Provinsi_Papua_Tari_Soanggi_hk4fwa.jpg",
     suku: ["Dera", "Kauere", "Kentukbresi"],
     julukan: "Bumi Cenderawasih",
     deskripsi:
@@ -498,6 +531,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643982/pin_provinsi_papua_barat_jfkqic.svg",
     lagu: "Yamko Rambe Yamko",
     makanan: "Ikan Bungkus",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370782/Tari_Yospan_Papua_Barat_zmr3fh.jpg",
     suku: [
       "Arfak",
       "Biak-Numfor",
@@ -522,6 +556,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_papua_pegunungan_cfj8uh.svg",
     lagu: "Esa Moku",
     makanan: "Ulat Sagu",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Papua_Pegunungan_-_Sajojo_o5fji9.jpg",
     suku: [
       "Dani",
       "Lani",
@@ -562,6 +597,7 @@ const budayaData = [
     lagu: "Mambesak",
     makanan: "Sagu Bakar",
     julukan: "Bumi Sagu",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370427/Papua_Tengah_-_Selamat_Datang_kn2hmy.jpg",
     deskripsi:
       "Wilayah tengah Papua dengan budaya pegunungan dan sungai. Sagu Bakar jadi makanan pokok yang disajikan saat upacara.",
   },
@@ -570,6 +606,7 @@ const budayaData = [
     posisi: [-7.3475, 139.9677],
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_papua_selatan_agmtd5.svg",
     lagu: "Tokotok",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370429/Papua_Selatan_Tari_Det_Pok_Mbui_napfbm.jpg",
     makanan: "Ikan Kuah Kuning",
     suku: [
       "Amungme",
@@ -607,6 +644,7 @@ const budayaData = [
     iconUrl: "https://res.cloudinary.com/dw8akacak/image/upload/v1752643983/pin_provinsi_papua_barat_daya_jwlllg.svg",
     lagu: "Sajojo",
     makanan: "Sagu Lempeng",
+    image: "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Papua_Barat_Daya_Tari_Aluyen_i0on7c.jpg",
     suku: [
       "Abun",
       "Ambel Waren",
