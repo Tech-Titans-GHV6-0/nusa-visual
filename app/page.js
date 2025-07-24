@@ -1,9 +1,18 @@
-import Image from "next/image";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <h2>WELCOME NUSA VISUAL</h2>
-    </div>
+    <>
+      <div className="flex min-h-screen bg-[#FFFBDE]">
+        <Navbar />
+        <main className="flex-1 h-screen overflow-y-auto mt-[60px] md:mt-0">
+          <h2 className="text-black">WELCOME NUSA VISUAL</h2>
+        </main>
+      </div>
+      <footer className="text-center text-xs text-gray-500 py-6">
+        © 2025 Tech Titans GarudaHacks 6.0
+      </footer>
+    </>
   );
 }
