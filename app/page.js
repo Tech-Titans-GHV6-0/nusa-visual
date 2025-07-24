@@ -12,17 +12,62 @@ import { Pagination } from "swiper/modules";
 import CultureCard from "./components/CultureCard";
 import Navbar from "./components/Navbar";
 import GreetingCard from "./components/GreetingCard";
+import CategoryFilter from "./components/CategoryFilter";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [filteredData, setFilteredData] = useState(data);
+  const [category, setCategory] = useState("");
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      const url = new URL("/api/search", window.location.origin);
+      if (category) url.searchParams.set("category", category);
+
+      const res = await fetch(url);
+      const data = await res.json();
+      setResults(data);
+    };
+
+    fetchResults();
+  }, [category]);
+
+  useEffect(() => {
+    if (selectedCategory === "") {
+      setFilteredData(data);
+    } else {
+      setFilteredData(
+        data.filter((item) => item.category === selectedCategory)
+      );
+    }
+  }, [selectedCategory, data]);
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category === selectedCategory ? "" : category); // toggle
+  };
 
   useEffect(() => {
     fetch("/api/budaya")
       .then((res) => res.json())
       .then(setData);
   }, []);
+
+  const categories = [
+    "Makanan Tradisional",
+    "Pakaian Adat",
+    "Tarian Daerah",
+    "Alat Musik Tradisional",
+    "Upacara Adat",
+    "Bahasa Daerah",
+    "Legenda & Cerita Rakyat",
+    "Festival Budaya",
+    "Kerajinan Tangan",
+    "Rumah Adat",
+  ];
 
   useEffect(() => {
     const checkInterest = async () => {
@@ -61,14 +106,23 @@ export default function HomePage() {
             <div>
               <GreetingCard username={session?.user?.username} />
               {data.length === 0 ? (
-                <p className="text-[#E2D8CC] px-4 py-2">Belum ada data budaya.</p>
+                <p className="text-[#E2D8CC] px-4 py-2">
+                  Belum ada data budaya.
+                </p>
               ) : (
                 <>
+                  <CategoryFilter onChange={handleCategorySelect} />
                   <div className="flex justify-center">
                     <div className="w-full max-w-xl space-y-6 md:mb-0 mb-24">
-                      {data.map((item) => (
-                        <CultureCard key={item.id} {...item} />
-                      ))}
+                      {filteredData.length > 0 ? (
+                        filteredData.map((item) => (
+                          <CultureCard key={item.id} {...item} />
+                        ))
+                      ) : (
+                        <div className="text-center text-white py-12">
+                          Tidak ada hasil pencarian
+                        </div>
+                      )}
                     </div>
                   </div>
                 </>
