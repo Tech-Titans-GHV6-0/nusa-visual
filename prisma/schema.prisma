@@ -6,10 +6,62 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  username  String? // ❌ @unique dihapus jika optional
+  email     String    @unique
+  password  String
+  region    String
+  origin    String
+  avatar    String?
+  createdAt DateTime  @default(now())
+  interests String[]
+  budaya    Budaya[]
+  likes     Like[]
+  comments  Comment[]
+}
+
+model Budaya {
+  id          Int       @id @default(autoincrement())
+  title       String
+  origin      String
+  category    String
+  description String
+  image       String?
+  createdAt   DateTime  @default(now())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+  likes       Like[]
+  comments    Comment[]
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  budayaId  Int
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  budaya Budaya @relation(fields: [budayaId], references: [id])
+
+  @@unique([userId, budayaId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  createdAt DateTime @default(now())
+  userId    String
+  budayaId  Int
+
+  user   User   @relation(fields: [userId], references: [id])
+  budaya Budaya @relation(fields: [budayaId], references: [id])
 }
