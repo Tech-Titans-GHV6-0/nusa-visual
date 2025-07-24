@@ -8,10 +8,10 @@ import { Loader2 } from "lucide-react";
 const slides = [
   {
     image:
-      "https://res.cloudinary.com/dr1afmnil/image/upload/v1752674187/culture_swap/cknl6nyxsnalpcmv3fv8.jpg",
-    title: "Pacu Jalur",
+      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370460/Sumut_Tor-Tor_Pose_svw5x3.jpg",
+    title: "Tari Tor Tor",
     description:
-      "Pacu Jalur is a traditional boat race from Riau, Indonesia, held on the Batang Kuantan River with long, vividly decorated boats and festive crowds.",
+      "The Tor Tor dance is a traditional dance of the Batak people of North Sumatra. This dance is not merely entertainment, but also has spiritual significance and serves as a means of communication in various Batak ceremonies such as weddings, funerals, and traditional festivals.",
   },
   {
     image:
@@ -22,10 +22,10 @@ const slides = [
   },
   {
     image:
-      "https://res.cloudinary.com/dr1afmnil/image/upload/v1739612051/m1qxwnsbavrwz0ah35pz.jpg",
-    title: "IP Routing",
+      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Papua_Pegunungan_-_Sajojo_o5fji9.jpg",
+    title: "Tarian Sajojo",
     description:
-      "IP Routing is the process of directing data packets between networks through routers, forming the backbone of modern internet communication.",
+      "The Sajojo dance is a traditional dance originating from Papua, specifically from the Sorong region of Southwest Papua. It is known as a social dance that can be performed by anyone, both men and women, young and old. The Sajojo dance is very popular in Papua and is often performed at various events, from traditional ceremonies and cultural celebrations to simply entertainment.",
   },
 ];
 
