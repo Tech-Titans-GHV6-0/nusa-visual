@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Dice3, Info } from "lucide-react";
 import budayaData from "@/data/budayaData";
+import Image from "next/image";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -62,11 +63,11 @@ export default function CultureMapPage() {
   };
 
   return (
-    <div className="relative h-screen w-full">
+    <div className="relative h-[130vh] w-full">
       <div className="absolute bottom-6 right-6 md:top-5 md:right-5 z-[999]">
         <button
           onClick={handleRandomExplore}
-          className="flex items-center gap-2 px-4 py-2 rounded-full shadow-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:scale-105 hover:shadow-xl transition-all duration-200 text-white font-semibold"
+          className="flex items-center gap-2 px-4 py-2 rounded-full shadow-lg bg-[#B49C78] hover:scale-105 hover:shadow-xl transition-all duration-200 text-white font-semibold"
         >
           <Dice3 size={18} />
           Jelajahi Acak
@@ -141,22 +142,67 @@ export default function CultureMapPage() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 200 }}
             transition={{ duration: 0.4 }}
-            className="absolute right-4 top-[110px] md:top-[100px] md:right-5 max-w-md bg-white rounded-2xl shadow-xl z-[1000] p-6 border"
+            className="absolute right-4 top-[110px] md:top-[100px] md:right-5 max-w-md w-[350px] bg-white rounded-2xl shadow-xl z-[1000] overflow-hidden border"
           >
-            <div className="flex items-center mb-3">
-              <Info className="text-indigo-600 mr-2" />
-              <h2 className="text-xl font-bold text-indigo-700">
-                {selectedProvince.nama}
-              </h2>
+            {/* Gambar header */}
+            <div className="relative h-48 w-full">
+              <Image
+                src={selectedProvince.image}
+                alt={selectedProvince.nama}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-t-2xl"
+              />
+              <div className="absolute bottom-3 left-4 text-white">
+                <div className="flex items-center gap-2">
+                  <Image
+                    src={selectedProvince.iconUrl}
+                    alt="Logo"
+                    width={60}
+                    height={60}
+                    className="rounded-full"
+                  />
+                  <h2 className="text-lg font-bold drop-shadow">
+                    {selectedProvince.nama}
+                  </h2>
+                </div>
+                <p className="text-sm drop-shadow bg-[#433D3D]/80 text-center rounded-full px-2 py-1">
+                  {selectedProvince.julukan}
+                </p>
+              </div>
             </div>
-            <p className="text-sm text-gray-700">
-              🎶 <strong>Lagu Daerah:</strong> {selectedProvince.lagu}
-              <br />
-              🍽️ <strong>Makanan Khas:</strong> {selectedProvince.makanan}
-            </p>
-            <p className="mt-3 text-gray-600 text-sm leading-relaxed">
-              {selectedProvince.deskripsi}
-            </p>
+
+            {/* Isi detail */}
+            <div className="p-5">
+              <h3 className="text-lg font-semibold mb-1 text-black">
+                Deskripsi
+              </h3>
+              <p className="text-sm text-gray-700 mb-4 text-black">
+                {selectedProvince.deskripsi}
+              </p>
+
+              <div className="text-sm mb-2">
+                <span className="font-semibold text-black">Makanan</span>
+                <p className="text-black">{selectedProvince.makanan || "-"}</p>
+              </div>
+
+              <div className="text-sm mb-4">
+                <span className="font-semibold text-black">Lagu</span>
+                <p className="text-black">{selectedProvince.lagu || "-"}</p>
+              </div>
+
+              {/* Tag budaya */}
+              <div className="flex flex-wrap gap-2">
+                {selectedProvince.suku?.map((budaya, index) => (
+                  <span
+                    key={index}
+                    className="bg-blue-100 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full"
+                  >
+                    {budaya}
+                  </span>
+                ))}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
