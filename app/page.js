@@ -12,7 +12,8 @@ import { Pagination } from "swiper/modules";
 import CultureCard from "./components/CultureCard";
 import Navbar from "./components/Navbar";
 import GreetingCard from "./components/GreetingCard";
-import CategoryFilter from "./components/CategoryFilter";
+import CategoryFilter from "./components/DraggableCategory";
+import DraggableCategory from "./components/DraggableCategory";
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -111,7 +112,10 @@ export default function HomePage() {
                 </p>
               ) : (
                 <>
-                  <CategoryFilter onChange={handleCategorySelect} />
+                  <DraggableCategory
+                    onChange={handleCategorySelect}
+                    selected={selectedCategory}
+                  />
                   <div className="flex justify-center">
                     <div className="w-full max-w-xl space-y-6 md:mb-0 mb-24">
                       {filteredData.length > 0 ? (

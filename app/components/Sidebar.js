@@ -33,7 +33,7 @@ const menuItems = [
   {
     icon: <Bot size={16} />,
     tooltip: "Chatbot AI",
-    href: "/dashboard/budaya/bahasa",
+    href: "/chatbot",
   },
 ];
 
