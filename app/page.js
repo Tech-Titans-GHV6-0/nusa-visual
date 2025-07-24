@@ -1,20 +1,84 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
+import Sidebar from "./components/Sidebar";
+import { useSession } from "next-auth/react";
+import InterestModal from "./components/InterestModal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import CultureCard from "./components/CultureCard";
 import Navbar from "./components/Navbar";
+import GreetingCard from "./components/GreetingCard";
 
 export default function HomePage() {
-  return (
-    <div className="flex min-h-screen bg-[#FFFBDE]">
-      <Navbar />
+  const { data: session, status } = useSession();
+  const [showModal, setShowModal] = useState(false);
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    fetch("/api/budaya")
+      .then((res) => res.json())
+      .then(setData);
+  }, []);
+
+  useEffect(() => {
+    const checkInterest = async () => {
+      if (status === "authenticated") {
+        const res = await fetch("/api/check-interests");
+
+        if (!res.ok) {
+          console.error("Response status:", res.status);
+          const text = await res.text();
+          console.error("Response body:", text);
+          return;
+        }
+
+        try {
+          const data = await res.json();
+          if (!data.hasInterests) {
+            setShowModal(true);
+          }
+        } catch (e) {
+          console.error("Gagal parse JSON:", e);
+        }
+      }
+    };
+
+    checkInterest();
+  }, [status]);
+
+  return (
+    <div className="flex min-h-screen bg-[#433D3D]">
+      {session ? <Sidebar /> : <Navbar />}
+
+      {/* Main Content */}
       <main className="flex-1 h-screen overflow-y-auto mt-[60px] md:mt-0">
+        {session ? (
+          <>
+            <div>
+              <GreetingCard username={session?.user?.username} />
+              {data.length === 0 ? (
+                <p className="text-[#E2D8CC] px-4 py-2">Belum ada data budaya.</p>
+              ) : (
+                <>
+                  <div className="flex justify-center">
+                    <div className="w-full max-w-xl space-y-6 md:mb-0 mb-24">
+                      {data.map((item) => (
+                        <CultureCard key={item.id} {...item} />
+                      ))}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </>
+        ) : (
           <>
             <section className="min-h-screen flex flex-col md:flex-row items-center justify-between gap-6 w-full px-4">
+              {/* KIRI: Text dan button Eksplor */}
               <div className="w-full md:w-1/2 md:justify-start">
                 <h1 className="text-2xl md:text-3xl font-bold text-[#246f9e] leading-tight">
                   Lorem Ipsum Dolor <br />
@@ -31,6 +95,8 @@ export default function HomePage() {
                   Eksplor Sekarang
                 </button>
               </div>
+
+              {/* KANAN: 4 Kotak */}
               <div className="w-full md:w-1/2 grid grid-cols-2 gap-4 mt-4">
                 {" "}
                 <div className="bg-white rounded-xl shadow p-6 text-center">
@@ -48,12 +114,14 @@ export default function HomePage() {
               </div>
             </section>
 
+            {/* Grid Cards */}
             <section className="px-6 py-4 grid grid-cols-2 md:grid-cols-3 gap-4">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="bg-gray-800 h-20 rounded" />
               ))}
             </section>
 
+            {/* Full Width Image with Overlay Text */}
             <section className="px-6 py-8">
               <div className="relative w-full h-64 md:h-96 rounded overflow-hidden">
                 <Image
@@ -73,6 +141,7 @@ export default function HomePage() {
               </div>
             </section>
 
+            {/* Section Card Budaya */}
             <section className="px-6 py-8">
               <h3 className="text-lg font-semibold text-[#2780ad]">
                 Lorem ipsum dolor sit amet
@@ -94,7 +163,9 @@ export default function HomePage() {
               </div>
             </section>
 
+            {/* Feature Card & Swiper */}
             <section className="px-6 py-8 grid md:grid-cols-2 gap-6">
+              {/* Left Card */}
               <div className="bg-white rounded-lg shadow-md p-4">
                 <div className="flex items-center gap-2">
                   <div className="w-10 h-10 bg-gray-200 rounded-full" />
@@ -106,6 +177,7 @@ export default function HomePage() {
                 <div className="mt-4 w-full h-32 bg-gray-300 rounded" />
               </div>
 
+              {/* Swiper */}
               <div>
                 <Swiper
                   modules={[Pagination]}
@@ -159,9 +231,13 @@ export default function HomePage() {
             {/* Footer */}
             <footer className="text-center text-xs text-gray-500 py-6">
               © 2025 Tech Titans GarudaHacks 6.0
-             </footer>
+            </footer>
           </>
+        )}
       </main>
+
+      {/* Modal */}
+      {showModal && <InterestModal onClose={() => setShowModal(false)} />}
     </div>
   );
 }

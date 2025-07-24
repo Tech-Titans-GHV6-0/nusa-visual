@@ -87,7 +87,7 @@ export default function CultureCard({
 
   return (
     <>
-      <div className="text-[#2780ad] rounded-2xl p-4 w-full">
+      <div className="text-[#B49C78] rounded-2xl p-4 w-full">
         <div className="flex items-start gap-3 mb-3 mt-3">
           <Image
             src={user?.avatar}
@@ -98,15 +98,15 @@ export default function CultureCard({
           />
           <div className="flex flex-col">
             <span className="font-semibold">{user?.name}</span>
-            <span className="text-sm text-black">
+            <span className="text-sm text-white">
               {user?.username} • {getRelativeTime(createdAt)}
             </span>
           </div>
         </div>
 
         <div className="ml-12 -mt-2 whitespace-pre-line text-sm leading-relaxed text-gray-200">
-          <p className="mb-2 font-medium text-[#2780ad]">{title}</p>
-          <p className="text-black">{description}</p>
+          <p className="mb-2 font-medium text-[#B49C78]">{title}</p>
+          <p className="text-[#E2D8CC]">{description}</p>
         </div>
 
         {image && (
@@ -115,7 +115,7 @@ export default function CultureCard({
           </div>
         )}
 
-        <div className="ml-12 mt-2 text-xs text-gray-500">
+        <div className="ml-12 mt-2 text-xs text-white">
           <p>
             {origin} • {category}
           </p>
@@ -134,7 +134,7 @@ export default function CultureCard({
             {likeCount}
           </button>
           <span
-            className="hover:text-blue-400 cursor-pointer"
+            className="hover:text-[#E2D8CC] cursor-pointer"
             onClick={() => setIsCommentModalOpen(true)}
           >
             💬 {commentCount}
@@ -157,7 +157,7 @@ export default function CultureCard({
             >
               ✕
             </button>
-            <h2 className="text-lg font-semibold mb-4 text-blue-400">
+            <h2 className="text-lg font-semibold mb-4 text-[#433D3D]">
               Komentar
             </h2>
             <CommentSection

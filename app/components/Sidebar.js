@@ -79,7 +79,7 @@ export default function Sidebar() {
       </div>
       <div
         className={`
-    bg-[#4682A9] text-white shadow-lg z-40
+    bg-[#E2D8CC] text-white shadow-lg z-40
     fixed md:sticky
     bottom-0 md:top-0
     left-0
@@ -114,7 +114,7 @@ export default function Sidebar() {
             <Link href={item.href}>
               <motion.div
                 whileHover={{ scale: 1.2 }}
-                className="p-2 md:p-4 rounded-xl hover:bg-black/20 transition-colors cursor-pointer"
+                className="text-[#433D3D] p-2 md:p-4 rounded-xl hover:bg-black/20 transition-colors cursor-pointer"
               >
                 {item.icon}
               </motion.div>
@@ -171,7 +171,7 @@ export default function Sidebar() {
         </motion.div>
 
         <Link href="/tambah">
-          <div className="hidden md:block p-2 md:p-4 rounded-xl bg-[#91C8E4] hover:bg-[#91C8E4]/40 transition-colors cursor-pointer">
+          <div className="hidden md:block p-2 md:p-4 rounded-xl bg-[#433D3D] hover:bg-[#433D3D]/40 transition-colors cursor-pointer">
             <PlusIcon size={16} />
           </div>
         </Link>
