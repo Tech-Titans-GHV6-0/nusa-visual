@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { Dialog } from "@headlessui/react";
+import { X, Search as SearchIcon } from "lucide-react";
 import {
   Home,
   LogOut,
@@ -14,18 +16,18 @@ import {
   Ellipsis,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { usePathname } from "next/navigation"; // Tambahkan ini di atas
+import { usePathname } from "next/navigation"; 
 
 const menuItems = [
   { icon: <Home size={16} />, tooltip: "Home", href: "/" },
   {
     icon: <Search size={16} />,
     tooltip: "Search",
-    href: "/dashboard/budaya/warisan",
+    action: "openSearch",
   },
   { icon: <MapPin size={16} />, tooltip: "Map", href: "/map" },
   {
@@ -40,6 +42,29 @@ export default function Sidebar() {
   const [hovered, setHovered] = useState(null);
   const router = useRouter();
   const pathname = usePathname();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState([]);
+
+  const openModal = (action) => {
+    if (action === "openSearch") setIsSearchOpen(true);
+  };
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (!query.trim()) {
+        setResults([]);
+        return;
+      }
+
+      const res = await fetch(`/api/search?q=${query}`);
+      const data = await res.json();
+      setResults(data);
+    };
+
+    const debounce = setTimeout(fetchResults, 300);
+    return () => clearTimeout(debounce);
+  }, [query]);
 
   if (status === "loading") return null;
 
@@ -112,16 +137,16 @@ export default function Sidebar() {
             onMouseLeave={() => setHovered(null)}
             className="relative group"
           >
-            <Link href={item.href}>
-              <motion.div
-                whileHover={{ scale: 1.2 }}
-                className={`text-[#433D3D] p-2 md:p-4 rounded-xl transition-colors cursor-pointer ${
-                  pathname === item.href ? "bg-black/30" : "hover:bg-black/20"
-                }`}
-              >
-                {item.icon}
-              </motion.div>
-            </Link>
+            <div
+              onClick={() =>
+                item.action ? openModal(item.action) : router.push(item.href)
+              }
+              className={`text-[#433D3D] p-2 md:p-4 rounded-xl transition-colors cursor-pointer ${
+                pathname === item.href ? "bg-black/30" : "hover:bg-black/20"
+              }`}
+            >
+              {item.icon}
+            </div>
             <AnimatePresence>
               {hovered === index && (
                 <motion.div
@@ -233,6 +258,51 @@ export default function Sidebar() {
           )}
         </div>
       </div>
+      <Dialog
+        open={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
+        className="relative z-50"
+      >
+        <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <Dialog.Panel className="w-full max-w-lg rounded-xl bg-white p-6 shadow-xl space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-gray-800">
+                Pencarian Budaya
+              </h2>
+              <button onClick={() => setIsSearchOpen(false)}>
+                <X className="w-5 h-5 text-gray-500 hover:text-red-500" />
+              </button>
+            </div>
+            <div className="relative">
+              <SearchIcon className="absolute left-3 top-2.5 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Cari judul, asal, atau kategori..."
+                className="w-full border border-gray-300 rounded-md pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#433D3D] text-black"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+            </div>
+            <div className="max-h-64 overflow-y-auto divide-y">
+              {results.length === 0 && query.trim() !== "" ? (
+                <p className="text-sm text-gray-500 px-1">
+                  Tidak ada hasil ditemukan.
+                </p>
+              ) : (
+                results.map((item) => (
+                  <div key={item.id} className="py-2">
+                    <p className="font-medium text-gray-800">{item.title}</p>
+                    <p className="text-sm text-gray-500">
+                      {item.origin} • {item.category}
+                    </p>
+                  </div>
+                ))
+              )}
+            </div>
+          </Dialog.Panel>
+        </div>
+      </Dialog>
     </>
   );
 }
