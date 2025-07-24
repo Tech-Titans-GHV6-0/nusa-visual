@@ -49,7 +49,7 @@ export default function Navbar() {
         </div>
 
         <Link href="/register" onClick={handleClickSign}>
-          <button className="bg-[#4682A9] hover:text-[#4682A9] hover:bg-white text-white px-4 py-2 rounded-full cursor-pointer">
+          <button className="bg-[#433D3D] hover:text-[#433D3D] hover:bg-[#E2D8CC] text-white px-4 py-2 rounded-full cursor-pointer">
             Register
           </button>
         </Link>
