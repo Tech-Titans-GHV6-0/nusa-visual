@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import toast from "react-hot-toast";
 
 const categories = [
   "Makanan Tradisional",
@@ -57,7 +58,8 @@ export default function TambahPage() {
     });
 
     if (res.ok) {
-      alert("Budaya berhasil ditambahkan!");
+      toast.success("Budaya berhasil ditambahkan!");
+      setTimeout(() => router.push("/"), 2000);
       setForm({ title: "", origin: "", category: "", description: "" });
       setImageFile(null);
     } else {
