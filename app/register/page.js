@@ -297,11 +297,11 @@ export default function RegisterPage() {
     });
 
     if (res.ok) {
-      toast.success("Registrasi berhasil!");
+      toast.success("Registration successful!");
       setTimeout(() => router.push("/login"), 2000);
     } else {
       const data = await res.json();
-      toast.error(data.error || "Registrasi gagal");
+      toast.error(data.error || "Registration failed");
     }
 
     setLoading(false);
@@ -379,7 +379,7 @@ export default function RegisterPage() {
                 type="password"
                 value={konfirmasiPassword}
                 onChange={(e) => setKonfirmasiPassword(e.target.value)}
-                placeholder="Konfirmasi Password"
+                placeholder="Confirm Password"
                 className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               />

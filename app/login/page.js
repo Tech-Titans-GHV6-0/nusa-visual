@@ -60,7 +60,7 @@ export default function LoginPage() {
         router.push("/");
       }, 1500);
     } else {
-      toast.error("Login gagal. Periksa email atau password.");
+      toast.error("Login failed. Check your email or password.");
     }
     setLoading(false);
   };
