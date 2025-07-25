@@ -51,7 +51,7 @@ export default function InterestModal({ onClose }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-xl w-[90%] max-w-2xl max-h-[90vh] overflow-y-auto shadow-lg relative">
-        <h2 className="text-2xl font-bold mb-2 text-center text-[#ee3e31]">
+        <h2 className="text-2xl font-bold mb-2 text-center text-[#433D3D]">
           Jelajahi Warisan Budaya Nusantara
         </h2>
         <p className="text-sm mb-5 text-center text-gray-600">
@@ -64,7 +64,7 @@ export default function InterestModal({ onClose }) {
               key={interest}
               className={`px-4 py-2 rounded-full border transition ${
                 selected.includes(interest)
-                  ? "bg-[#00a199] text-white border-[#00a199]"
+                  ? "bg-[#433D3D] text-white border-[#433D3D]"
                   : "border-gray-400 text-gray-700 hover:bg-gray-100"
               }`}
               onClick={() => toggleInterest(interest)}
@@ -76,7 +76,7 @@ export default function InterestModal({ onClose }) {
 
         <button
           onClick={handleSubmit}
-          className="w-full py-2 rounded-md bg-[#f49220] hover:bg-[#ee3e31] text-white font-semibold transition"
+          className="w-full py-2 rounded-md bg-[#433D3D] hover:bg-[#E2D8CC] hover:text-[#433D3D] text-white font-semibold transition"
         >
           Lanjutkan Eksplorasi
         </button>
