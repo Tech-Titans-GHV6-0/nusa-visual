@@ -90,11 +90,15 @@ export default function CultureCard({
     user.avatar ===
       "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png";
 
-    const defaultAvatar = "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png";
+  const defaultAvatar =
+    "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png";
 
   return (
     <>
-      <div className="text-[#B49C78] rounded-2xl p-4 w-full">
+      <div
+        id={`culture-${id}`}
+        className="text-[#B49C78] rounded-2xl p-4 w-full"
+      >
         <div className="flex items-start gap-3 mb-3 mt-3">
           <Image
             src={isDefault ? defaultAvatar : user.avatar}
@@ -113,7 +117,7 @@ export default function CultureCard({
         </div>
 
         <div className="ml-12 -mt-2 whitespace-pre-line text-sm leading-relaxed text-gray-200">
-          <p className="mb-2 font-medium text-[#B49C78]">{title}</p>
+          <p className="mt-6 mb-2 font-bold text-[#B49C78] text-2xl">{title}</p>
           <p className="text-[#E2D8CC]">{description}</p>
         </div>
 
@@ -145,9 +149,7 @@ export default function CultureCard({
             className="flex items-center gap-1 hover:text-[#E2D8CC] cursor-pointer"
             onClick={() => setIsCommentModalOpen(true)}
           >
-            <MessageCircle
-              className={"w-4 h-4"}
-            /> {commentCount}
+            <MessageCircle className={"w-4 h-4"} /> {commentCount}
           </span>
         </div>
         {showComments && (

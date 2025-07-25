@@ -20,7 +20,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import toast from "react-hot-toast";
-import { usePathname } from "next/navigation"; 
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   { icon: <Home size={16} />, tooltip: "Home", href: "/" },
@@ -289,10 +289,16 @@ export default function Sidebar() {
               ) : (
                 results.map((item) => (
                   <div key={item.id} className="py-2">
-                    <p className="font-medium text-gray-800">{item.title}</p>
-                    <p className="text-sm text-gray-500">
-                      {item.origin} • {item.category}
-                    </p>
+                    <Link href={`/?id=${item.id}`}>
+                      <div>
+                        <p className="font-medium text-gray-800">
+                          {item.title}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {item.origin} • {item.category}
+                        </p>
+                      </div>
+                    </Link>
                   </div>
                 ))
               )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Sidebar from "./components/Sidebar";
 import { useSession } from "next-auth/react";
@@ -15,11 +15,12 @@ import GreetingCard from "./components/GreetingCard";
 import DraggableCategory from "./components/DraggableCategory";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 function BudayaCard({ namaBudaya, namaDaerah, kategori, imageUrl }) {
   return (
     <motion.div
-      className="min-w-[260px] h-40 rounded-lg relative overflow-hidden text-white"
+      className="min-w-[260px] h-40 rounded-lg relative overflow-hidden text-white mt-12 md:mt-24"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -30,7 +31,7 @@ function BudayaCard({ namaBudaya, namaDaerah, kategori, imageUrl }) {
         alt={namaBudaya}
         fill
         className="object-cover object-center"
-        priority={true} 
+        priority={true}
       />
 
       {/* Overlay gelap */}
@@ -56,6 +57,30 @@ export default function HomePage() {
   const [filteredData, setFilteredData] = useState(data);
   const [category, setCategory] = useState("");
   const [results, setResults] = useState([]);
+  const searchParams = useSearchParams();
+  const targetId = searchParams.get("id");
+
+  useEffect(() => {
+    if (!targetId) return;
+
+    const scrollToElement = () => {
+      const el = document.getElementById(`culture-${targetId}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return true;
+      }
+      return false;
+    };
+
+    let attempts = 0;
+    const interval = setInterval(() => {
+      const found = scrollToElement();
+      attempts++;
+      if (found || attempts > 30) clearInterval(interval); // 3 detik max
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, [targetId]);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -135,14 +160,14 @@ export default function HomePage() {
       {session ? <Sidebar /> : <Navbar />}
 
       {/* Main Content */}
-      <main className="flex-1 h-screen overflow-y-auto mt-[60px] md:mt-0">
+      <main className="flex-1 h-screen overflow-y-auto pt-[25px] md:mt-0">
         {session ? (
           <>
             <div>
               <GreetingCard username={session?.user?.username} />
               {data.length === 0 ? (
                 <p className="text-[#E2D8CC] px-4 py-2">
-                  Belum ada data budaya.
+                  No cultural data available yet.
                 </p>
               ) : (
                 <>
@@ -154,7 +179,7 @@ export default function HomePage() {
                     <div className="w-full max-w-xl space-y-6 md:mb-0 mb-24">
                       {filteredData.length > 0 ? (
                         filteredData.map((item) => (
-                          <CultureCard key={item.id} {...item} />
+                          <CultureCard key={item.id} id={item.id} {...item} />
                         ))
                       ) : (
                         <div className="text-center text-white py-12">
@@ -174,7 +199,7 @@ export default function HomePage() {
               whileInView="visible"
               transition={{ staggerChildren: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="min-h-screen flex flex-col md:flex-row items-center justify-between gap-6 w-full px-4"
+              className="min-h-screen flex flex-col md:flex-row items-center justify-between gap-6 w-full px-6 md:px-12"
             >
               {/* KIRI: Text dan button Eksplor */}
               <motion.div
@@ -232,7 +257,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="px-6 py-8"
+              className="px-6 md:px-12 py-8"
             >
               <div className="relative w-full h-64 md:h-96 rounded rounded-4xl overflow-hidden">
                 <Image
@@ -242,7 +267,7 @@ export default function HomePage() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white text-center">
-                  <h2 className="text-lg md:text-3xl font-medium">
+                  <h2 className="text-1xl md:text-3xl font-medium">
                     “Pelestarian budaya bukan tugas segelintir orang, <br />{" "}
                     kolaborasi kamu bisa jadi alasan ia tetap hidup.”
                   </h2>
@@ -255,7 +280,7 @@ export default function HomePage() {
               </div>
             </motion.section>
 
-            <section className="px-6 py-8">
+            <section className="px-6 md:px-12 py-12 md:py-24">
               <p className="text-[#B49C78]">
                 Eksplorasi kekayaan warisan Nusantara
               </p>
@@ -278,7 +303,7 @@ export default function HomePage() {
                   {
                     label: "Tarian Daerah",
                     image:
-                      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370595/Sumsel_Tari_Kebagh__2017_1_alofqr.jpg",
+                      "https://res.cloudinary.com/dw8akacak/image/upload/v1753423315/Sumsel_Tari_Kebagh__2017_rpeypw.jpg",
                   },
                   {
                     label: "Festival Budaya",
@@ -290,7 +315,6 @@ export default function HomePage() {
                     key={i}
                     className="relative h-40 md:h-56 rounded-2xl overflow-hidden shadow-md border border-[#B49C78] flex items-end justify-start bg-gray-200"
                   >
-                    {/* Lazy load img for preloading background */}
                     <Image
                       src={item.image}
                       alt={item.label}
@@ -310,37 +334,35 @@ export default function HomePage() {
               </div>
             </section>
 
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="px-6 pt-12"
-            >
-              <h3 className="text-lg md:text-3xl font-semibold text-[#E2D8CC]">
+            <div className="px-6 md:px-12 pt-12 md:pt-24">
+              <h3 className="text-2xl md:text-3xl font-semibold text-[#E2D8CC]">
                 Ikut kolaborasi dalam pelestarian budaya
               </h3>
-            </motion.div>
+            </div>
             <motion.section
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
-              className="px-4 md:px-6 py-8 grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="px-4 md:px-12 py-8 grid grid-cols-1 md:grid-cols-2 gap-6"
             >
               {/* Kartu Kiri */}
               <div className="bg-white rounded-lg shadow-md p-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gray-200 rounded-full" />
                   <div>
-                    <p className="text-sm font-bold text-[#B49C78]">Heiza</p>
-                    <p className="text-xs text-[#E2D8CC]">Lorem Ipsum</p>
+                    <p className="text-md font-bold text-[#B49C78]">Heiza</p>
+                    <p className="text-xs text-[#E2D8CC]">heiza_</p>
                   </div>
                 </div>
                 <div className="py-2">
-                  <h1 className="text-[#B49C78] text-base md:text-lg">
-                    Hello World
-                  </h1>
+                  <p className="text-[#B49C78] text-sm md:text-lg">
+                    Candi Borobudur adalah candi Buddha terbesar di dunia yang
+                    terletak di Magelang, Jawa Tengah. Dibangun pada abad ke-8
+                    oleh Dinasti Syailendra, candi ini merupakan situs warisan
+                    dunia UNESCO yang terkenal dengan keindahan arsitektur dan
+                    reliefnya yang kaya akan cerita.
+                  </p>
                 </div>
                 <div className="mt-4 w-full h-48 md:h-64 relative rounded overflow-hidden">
                   <Image
@@ -366,18 +388,22 @@ export default function HomePage() {
                       <div className="flex items-center gap-2">
                         <div className="w-10 h-10 bg-[#2780ad] rounded-full" />
                         <div>
-                          <p className="text-sm font-bold text-[#B49C78]">
+                          <p className="text-md font-bold text-[#B49C78]">
                             Ricos
                           </p>
-                          <p className="text-xs text-[#E2D8CC]">
-                            Pemerhati Budaya
-                          </p>
+                          <p className="text-xs text-[#E2D8CC]">_ricos</p>
                         </div>
                       </div>
                       <div className="py-2">
-                        <h1 className="text-[#B49C78] text-base md:text-lg">
-                          Hello World
-                        </h1>
+                        <p className="text-[#B49C78] text-sm md:text-lg">
+                          Candi Prambanan adalah kompleks candi Hindu terbesar
+                          di Indonesia, yang terletak di perbatasan antara Jawa
+                          Tengah dan Yogyakarta. Candi ini didedikasikan untuk
+                          Trimurti, tiga dewa utama Hindu: Brahma, Wisnu, dan
+                          Siwa. Dibangun pada abad ke-9, Candi Prambanan
+                          merupakan simbol kejayaan arsitektur dan seni budaya
+                          masa lalu.
+                        </p>
                       </div>
                       <div className="mt-4 w-full h-48 md:h-64 relative rounded overflow-hidden">
                         <Image
