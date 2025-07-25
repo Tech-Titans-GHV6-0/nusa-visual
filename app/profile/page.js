@@ -66,7 +66,7 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="flex min-h-screen bg-[#433D3D]">
+    <div className="flex min-h-screen bg-[#433D3D] mt-12 md:mt-0">
       <Sidebar />
       <div className="flex-1 p-6 max-w-3xl mx-auto">
         <div className="flex items-center gap-4 p-4 rounded-lg shadow bg-[#E2D8CC]">

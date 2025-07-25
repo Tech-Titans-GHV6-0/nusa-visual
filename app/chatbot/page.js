@@ -86,7 +86,7 @@ export default function ChatPage() {
   }, [messages]);
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen my-16 md:my-0">
       <Sidebar />
       {/* Lebar penuh */}
       <div className="flex-1 bg-gray-50 flex flex-col px-4 py-6">
