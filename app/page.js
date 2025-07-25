@@ -102,6 +102,7 @@ export default function HomePage() {
     "Kerajinan Tangan",
     "Rumah Adat",
     "Permainan Tradisional",
+    "Bangunan Sejarah"
   ];
 
   useEffect(() => {

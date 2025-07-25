@@ -17,6 +17,7 @@ const categories = [
   "Kerajinan Tangan",
   "Rumah Adat",
   "Permainan Tradisional",
+  "Bangunan Sejarah"
 ];
 
 export default function TambahPage() {

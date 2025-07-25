@@ -14,7 +14,8 @@ export default function InterestModal({ onClose }) {
     "Festival Budaya",
     "Kerajinan Tangan",
     "Rumah Adat",
-    "Permainan Tradisional"
+    "Permainan Tradisional",
+    "Bangunan Sejarah"
   ];
 
   const [selected, setSelected] = useState([]);

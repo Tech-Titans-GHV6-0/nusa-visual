@@ -14,7 +14,8 @@ const categories = [
   "Festival Budaya",
   "Kerajinan Tangan",
   "Rumah Adat",
-  "Permainan Tradisional"
+  "Permainan Tradisional",
+  "Bangunan Sejarah"
 ];
 
 export default function DraggableCategory({ onChange, selected }) {
