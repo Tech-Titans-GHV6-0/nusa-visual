@@ -67,6 +67,7 @@ export default function TambahPage() {
       setImageFile(null);
 
       setTimeout(() => {
+        console.log("Redirecting to home...");
         router.push("/"); 
       }, 2000);
     } else {

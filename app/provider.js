@@ -13,7 +13,7 @@ export function Providers({ children }) {
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, [pathname]);
