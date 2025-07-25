@@ -9,7 +9,6 @@ export default function InterestModal({ onClose }) {
     "Tarian Daerah",
     "Alat Musik Tradisional",
     "Upacara Adat",
-    "Bahasa Daerah",
     "Legenda & Cerita Rakyat",
     "Festival Budaya",
     "Kerajinan Tangan",

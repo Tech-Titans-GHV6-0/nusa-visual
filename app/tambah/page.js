@@ -11,7 +11,6 @@ const categories = [
   "Tarian Daerah",
   "Alat Musik Tradisional",
   "Upacara Adat",
-  "Bahasa Daerah",
   "Legenda & Cerita Rakyat",
   "Festival Budaya",
   "Kerajinan Tangan",
