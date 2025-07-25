@@ -334,10 +334,10 @@ export default function RegisterPage() {
         </div>
 
         {/* Right section (form) */}
-        <div className="flex w-full md:w-1/2 items-center justify-center bg-white/90 backdrop-blur-sm px-6 md:px-12 py-10 md:py-16">
+        <div className="flex w-full md:w-1/2 items-center justify-center bg-white/90 backdrop-blur-sm px-6 md:px-12 py-20 md:py-16">
           <div className="w-full max-w-md space-y-6">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-green-800">Register</h1>
+              <h1 className="text-4xl font-bold text-[#433D3D]">Register</h1>
               <p className="text-sm text-gray-600 mt-2">
                 Sign up to access exclusive content and cultural journeys.
               </p>
@@ -349,7 +349,7 @@ export default function RegisterPage() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Full Name"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               />
               <input
@@ -357,14 +357,14 @@ export default function RegisterPage() {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
               />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               />
               <input
@@ -372,7 +372,7 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               />
               <input
@@ -380,13 +380,13 @@ export default function RegisterPage() {
                 value={konfirmasiPassword}
                 onChange={(e) => setKonfirmasiPassword(e.target.value)}
                 placeholder="Konfirmasi Password"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               />
               <select
                 value={region}
                 onChange={(e) => setRegion(e.target.value)}
-                className="w-full p-3 border border-green-800 text-black rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               >
                 <option value="">Select Country</option>
@@ -400,20 +400,20 @@ export default function RegisterPage() {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setAvatar(e.target.files?.[0])}
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
               />
               <input
                 type="text"
                 value={origin}
                 onChange={(e) => setOrigin(e.target.value)}
                 placeholder="Region of Origin (example: Minangkabau)"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-700 transition"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring[#433D3D] transition"
                 required
               />
 
               <button
                 type="submit"
-                className="w-full bg-green-800 text-white py-3 rounded-md hover:bg-green-900 transition font-medium"
+                className="w-full bg-[#433D3D] text-white py-3 rounded-md hover:bg-[#E2D8CC] hover:text-[#433D3D] transition font-medium"
               >
                 Register
               </button>
@@ -421,7 +421,7 @@ export default function RegisterPage() {
 
             <div className="text-center text-sm text-gray-600">
               Already have an account?{" "}
-              <a href="/login" className="text-green-800 underline">
+              <a href="/login" className="text- underline">
                 Login
               </a>
             </div>

@@ -9,10 +9,10 @@ import { Loader2 } from "lucide-react";
 const slides = [
   {
     image:
-      "https://res.cloudinary.com/dr1afmnil/image/upload/v1752674187/culture_swap/cknl6nyxsnalpcmv3fv8.jpg",
-    title: "Pacu Jalur",
+      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370460/Sumut_Tor-Tor_Pose_svw5x3.jpg",
+    title: "Tari Tor Tor",
     description:
-      "Pacu Jalur is a traditional boat race from Riau, Indonesia, held on the Batang Kuantan River with long, vividly decorated boats and festive crowds.",
+      "The Tor Tor dance of the Batak people blends tradition, spirituality, and communication during weddings, funerals, and sacred North Sumatran ceremonies.",
   },
   {
     image:
@@ -23,12 +23,12 @@ const slides = [
   },
   {
     image:
-      "https://res.cloudinary.com/dr1afmnil/image/upload/v1739612051/m1qxwnsbavrwz0ah35pz.jpg",
-    title: "IP Routing",
+      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370428/Papua_Pegunungan_-_Sajojo_o5fji9.jpg",
+    title: "Tarian Sajojo",
     description:
-      "IP Routing is the process of directing data packets between networks through routers, forming the backbone of modern internet communication.",
+      "The Sajojo dance from Papua’s Sorong region is a lively social dance for all ages, often performed at cultural and festive gatherings.",
   },
-];  
+];
 
 export default function LoginPage() {
   const router = useRouter();
@@ -81,7 +81,7 @@ export default function LoginPage() {
         {/* LEFT: Deskripsi Slider (ditampilkan di semua ukuran) */}
         <div className="flex w-full md:w-1/2 items-end p-6 md:p-10 text-white">
           <div className="bg-black/30 p-4 md:p-6 rounded-lg max-w-xl">
-            <h2 className="text-2xl md:text-4xl font-bold font-serif">
+            <h2 className="text-2xl md:text-4xl font-bold">
               {slides[currentSlide].title}
             </h2>
             <p className="mt-2 md:mt-4 text-sm md:text-base">
@@ -91,12 +91,12 @@ export default function LoginPage() {
         </div>
 
         {/* RIGHT: Login Form */}
-        <div className="flex w-full md:w-1/2 items-center justify-center bg-white/90 backdrop-blur-sm relative z-30 px-4 sm:px-6 md:px-12 py-8 sm:py-10 md:py-14 rounded-none md:rounded-3xl md:m-12 m-0">
+        <div className="flex w-full md:w-1/2 items-center justify-center bg-white/90 backdrop-blur-sm relative z-30 px-4 sm:px-6 md:px-12 py-10 md:py-16 pb-10 md:pb-16 rounded-none md:rounded-3xl md:m-12 m-0">
           <div className="w-full max-w-md">
-            <h1 className="text-4xl font-bold text-center text-green-800 mb-2">
+            <h1 className="text-4xl font-bold text-center text-[#433D3D] mb-2">
               Welcome Back
             </h1>
-            <p className="text-center text-sm text-gray-600 mb-6">
+            <p className="text-center text-sm text-[#433D3D] mb-6">
               Sign in to continue your journey. Access exclusive features and
               personalized experiences.
             </p>
@@ -106,7 +106,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-800"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#433D3D]"
                 required
               />
               <input
@@ -114,13 +114,13 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full p-3 border border-green-800 text-black rounded-md focus:outline-none focus:ring-2 focus:ring-green-800"
+                className="w-full p-3 border border-[#433D3D] text-black rounded-md focus:outline-none focus:ring-2 focus:ring-[#433D3D]"
                 required
               />
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-green-800 text-white py-2 rounded-md hover:bg-green-900 flex justify-center items-center gap-2 disabled:opacity-70"
+                className="w-full bg-[#433D3D] hover:bg-[#E2D8CC] hover:text-[#433D3D] text-white py-2 rounded-md flex justify-center items-center gap-2 disabled:opacity-70"
               >
                 {loading ? (
                   <>
@@ -135,7 +135,7 @@ export default function LoginPage() {
 
             <div className="text-center mt-4 text-sm text-gray-600">
               Don’t have an account?{" "}
-              <a href="/register" className="text-green-800 underline">
+              <a href="/register" className="text-[#433D3D] underline">
                 Create Account
               </a>
             </div>
