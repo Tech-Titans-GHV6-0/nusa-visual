@@ -4,6 +4,28 @@ import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import Sidebar from "../components/Sidebar";
 
+function parseMarkdown(text) {
+  const elements = [];
+
+  const regex = /(\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`|[^*`]+)/g;
+
+  let match;
+  while ((match = regex.exec(text))) {
+    if (match[2]) {
+      elements.push(<strong key={elements.length}>{match[2]}</strong>);
+    } else if (match[3]) {
+      elements.push(<em key={elements.length}>{match[3]}</em>);
+    } else if (match[4]) {
+      elements.push(<code key={elements.length} className="bg-gray-200 px-1 py-0.5 rounded">{match[4]}</code>);
+    } else {
+      elements.push(<span key={elements.length}>{match[0]}</span>);
+    }
+  }
+
+  return elements;
+}
+
+
 export default function ChatPage() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
@@ -107,7 +129,8 @@ export default function ChatPage() {
                       : "bg-[#B49C78] text-white rounded-bl-none"
                   }`}
                 >
-                  {msg.text}
+                  {parseMarkdown(msg.text)}
+
                 </div>
               </div>
             ))}
