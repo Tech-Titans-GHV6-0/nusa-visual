@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import Sidebar from "../components/Sidebar";
+import { useRouter } from "next/navigation";
 
 const categories = [
   "Makanan Tradisional",
@@ -26,6 +27,7 @@ export default function TambahPage() {
     description: "",
   });
   const [imageFile, setImageFile] = useState(null);
+  const router = useRouter();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
