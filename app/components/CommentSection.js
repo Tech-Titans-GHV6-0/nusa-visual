@@ -51,7 +51,7 @@ export default function CommentSection({ budayaId, userId, onNewComment }) {
         />
         <button
           type="submit"
-          className="bg-[#433D3D] text-white px-4 py-1 rounded hover:bg-blue-600"
+          className="bg-[#433D3D] text-white px-4 py-1 rounded hover:bg-[#E2D8CC] hover:text-[#433D3D]"
         >
           Kirim
         </button>
