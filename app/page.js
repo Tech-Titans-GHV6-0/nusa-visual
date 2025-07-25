@@ -99,6 +99,7 @@ export default function HomePage() {
     "Festival Budaya",
     "Kerajinan Tangan",
     "Rumah Adat",
+    "Permainan Tradisional"
   ];
 
   useEffect(() => {
