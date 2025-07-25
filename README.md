@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://res.cloudinary.com/dw8akacak/image/upload/v1753446422/logo_nusa_visual_background_yrg0ky.png" width="100" />
+  <img src="https://res.cloudinary.com/dw8akacak/image/upload/v1753446422/logo_nusa_visual_background_yrg0ky.png" width="400" />
   <h1>Nusa Visual</h1>
   <p>A way to visualize Nusantara's heritage</p>
 </div>
@@ -20,7 +20,7 @@
 - Swiper
 - Headless UI
 
-- **Backend:**
+**Backend:**
 - Next-Auth
 - Gemini
 - Prisma
