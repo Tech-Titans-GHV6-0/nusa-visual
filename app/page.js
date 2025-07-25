@@ -14,6 +14,37 @@ import Navbar from "./components/Navbar";
 import GreetingCard from "./components/GreetingCard";
 import CategoryFilter from "./components/DraggableCategory";
 import DraggableCategory from "./components/DraggableCategory";
+import { motion } from "framer-motion";
+
+function BudayaCard({ namaBudaya, namaDaerah, kategori, imageUrl }) {
+  return (
+    <motion.div
+      className="min-w-[260px] h-40 rounded-lg relative overflow-hidden text-white"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${imageUrl})` }}
+      />
+
+      {/* Overlay gelap */}
+      <div className="absolute inset-0 bg-black/50" />
+
+      {/* Konten */}
+      <div className="relative z-10 p-3 flex flex-col justify-end h-full">
+        <span className="text-sm font-semibold">{namaBudaya}</span>
+        <span className="text-xs">{namaDaerah}</span>
+        <span className="text-[10px] text-gray-200 mt-1 border border-gray-300 rounded-full px-2 py-[2px] w-fit">
+          {kategori}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function HomePage() {
   const { data: session, status } = useSession();
@@ -135,156 +166,355 @@ export default function HomePage() {
           </>
         ) : (
           <>
-            <section className="min-h-screen flex flex-col md:flex-row items-center justify-between gap-6 w-full px-4">
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="min-h-screen flex flex-col md:flex-row items-center justify-between gap-6 w-full px-4"
+            >
               {/* KIRI: Text dan button Eksplor */}
               <div className="w-full md:w-1/2 md:justify-start">
-                <h1 className="text-2xl md:text-3xl font-bold text-[#246f9e] leading-tight">
-                  Lorem Ipsum Dolor <br />
-                  <span className="text-[#2780ad]">
-                    Lorem ipsum dolor sit amet
+                <h1 className="text-2xl md:text-3xl font-bold text-[#B49C78] leading-tight">
+                  Nusa Visual <br />
+                  <span className="text-[#E2D8CC]">
+                    A way to visualize Nusantara`s Heritage
                   </span>
                 </h1>
-                <p className="text-sm text-gray-600 mt-2 max-w-lg">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna
-                  aliqua...
+                <p className="text-sm text-[#E2D8CC] mt-2 max-w-lg">
+                  Menghadirkan cara baru merawat budaya melalui eksplorasi
+                  digital, kolaborasi terbuka, dan ruang hidup yang menjadikan
+                  warisan tak lagi sekadar arsip, tapi sesuatu yang terus
+                  bernapas.
                 </p>
-                <button className="mt-4 bg-[#246f9e] text-white px-6 py-2 rounded-full text-sm">
+                <button className="mt-4 bg-[#B49C78] hover:bg-[#E2D8CC] hover:text-[#B49C78] text-white px-6 py-2 rounded-full text-sm">
                   Eksplor Sekarang
                 </button>
               </div>
 
               {/* KANAN: 4 Kotak */}
+              {/* KANAN: 4 Gambar Kotak */}
               <div className="w-full md:w-1/2 grid grid-cols-2 gap-4 mt-4">
-                {" "}
-                <div className="bg-white rounded-xl shadow p-6 text-center">
-                  <p>Kotak 1</p>
-                </div>
-                <div className="bg-white rounded-xl shadow p-6 text-center">
-                  <p>Kotak 2</p>
-                </div>
-                <div className="bg-white rounded-xl shadow p-6 text-center">
-                  <p>Kotak 3</p>
-                </div>
-                <div className="bg-white rounded-xl shadow p-6 text-center">
-                  <p>Kotak 4</p>
-                </div>
+                {[
+                  "/v1753367908/Main-Image-Songket-Palembang-by-Digstraksi_abriqw.jpg",
+                  "/v1753367914/Unesco_-_Hutan_Hujan_Tropis_-Taman_Nasional_Gunung_Leuser_natwem.jpg",
+                  "/v1753367916/Raja_Ampat_Islands_-_journal.pbio.1001457.g001_cinblj.png",
+                  "/v1753367918/Angklung__2315119130_btkv5l.jpg",
+                ].map((img, i) => (
+                  <div
+                    key={i}
+                    className="relative h-32 md:h-40 rounded-xl overflow-hidden shadow"
+                  >
+                    <Image
+                      src={`https://res.cloudinary.com/dw8akacak/image/upload${img}`}
+                      alt={`Kotak ${i + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
               </div>
-            </section>
-
-            {/* Grid Cards */}
-            <section className="px-6 py-4 grid grid-cols-2 md:grid-cols-3 gap-4">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="bg-gray-800 h-20 rounded" />
-              ))}
-            </section>
-
-            {/* Full Width Image with Overlay Text */}
-            <section className="px-6 py-8">
-              <div className="relative w-full h-64 md:h-96 rounded overflow-hidden">
+            </motion.section>
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="px-6 py-8"
+            >
+              <div className="relative w-full h-64 md:h-96 rounded rounded-4xl overflow-hidden">
                 <Image
-                  src="/images/children.jpg"
-                  alt="Anak-anak bermain"
+                  src="https://res.cloudinary.com/dw8akacak/image/upload/v1753389640/matheo-jbt-MYN9ybY3vVc-unsplash_ru3s8b.jpg"
+                  alt="Pelestarian Kebudayaan"
                   fill
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white text-center">
-                  <h2 className="text-lg md:text-xl font-semibold">
-                    "Lorem Ipsum Dolor Sit Amet!"
+                  <h2 className="text-lg md:text-3xl font-medium">
+                    “Pelestarian budaya bukan tugas segelintir orang, <br />{" "}
+                    kolaborasi kamu bisa jadi alasan ia tetap hidup.”
                   </h2>
-                  <button className="mt-4 px-4 py-1 bg-white text-black rounded-full text-sm">
-                    Lorem ipsum
+                  <button className="mt-4 px-4 py-3 bg-white/40 backdrop-blur-md text-white hover:bg-[#433D3D] rounded-full text-sm">
+                    Bergabung sekarang
                   </button>
                 </div>
               </div>
-            </section>
+            </motion.section>
 
-            {/* Section Card Budaya */}
-            <section className="px-6 py-8">
-              <h3 className="text-lg font-semibold text-[#2780ad]">
-                Lorem ipsum dolor sit amet
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="px-6 py-8"
+            >
+              <p className="text-[#B49C78]">
+                Eksplorasi kekayaan warisan Nusantara
+              </p>
+              <h3 className="text-lg md:text-3xl font-semibold text-[#E2D8CC]">
+                Jelajahi kearifan lokal
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 {[
-                  "Warisan Kebudayaan",
-                  "Suku Bangsa",
-                  "Bahasa Daerah",
-                  "Makanan Khas",
-                ].map((label, i) => (
-                  <div
+                  {
+                    label: "Kerajinan Tangan",
+                    image:
+                      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370898/Main-Image-Songket-Palembang-by-Digstraksi_rp6vpk.jpg",
+                  },
+                  {
+                    label: "Rumah Adat",
+                    image:
+                      "https://res.cloudinary.com/dw8akacak/image/upload/v1753391019/eb7155ad2d8a5e1de228e78d26e655cf_iwvota.jpg",
+                  },
+                  {
+                    label: "Tarian Daerah",
+                    image:
+                      "https://res.cloudinary.com/dw8akacak/image/upload/v1753370595/Sumsel_Tari_Kebagh__2017_1_alofqr.jpg",
+                  },
+                  {
+                    label: "Festival Budaya",
+                    image:
+                      "https://res.cloudinary.com/dw8akacak/image/upload/v1753391161/Tarian_Anak_di_Atas_Perahu_Pacu_Jalur_Viral_dan_Mendunia_Begini_Sejarahnya_n4fae2.jpg",
+                  },
+                ].map((item, i) => (
+                  <motion.div
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    viewport={{ once: true, amount: 0.2 }}
                     key={i}
-                    className="bg-white shadow-md rounded-lg p-4 flex items-center justify-center text-sm font-medium text-[#2780ad] border border-[#2780ad]"
+                    className="relative h-100 rounded-2xl overflow-hidden shadow-md border border-[#B49C78] flex items-end justify-start"
+                    style={{
+                      backgroundImage: `url(${item.image})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
                   >
-                    {label}
-                  </div>
+                    <div className="bg-white/40 backdrop-blur-md text-white text-sm font-medium px-3 py-1 rounded-full m-4">
+                      {item.label}
+                    </div>
+                  </motion.div>
                 ))}
               </div>
-            </section>
+            </motion.section>
 
-            {/* Feature Card & Swiper */}
-            <section className="px-6 py-8 grid md:grid-cols-2 gap-6">
-              {/* Left Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="px-6 pt-12"
+            >
+              <h3 className="text-lg md:text-3xl font-semibold text-[#E2D8CC]">
+                Ikut kolaborasi dalam pelestarian budaya
+              </h3>
+            </motion.div>
+            <motion.section
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="px-4 md:px-6 py-8 grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
+              {/* Kartu Kiri */}
               <div className="bg-white rounded-lg shadow-md p-4">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-gray-200 rounded-full" />
                   <div>
-                    <p className="text-sm font-semibold">Lorem ipsum</p>
-                    <p className="text-xs text-gray-500">Lorem Ipsum</p>
+                    <p className="text-sm font-bold text-[#B49C78]">Heiza</p>
+                    <p className="text-xs text-[#E2D8CC]">Lorem Ipsum</p>
                   </div>
                 </div>
-                <div className="mt-4 w-full h-32 bg-gray-300 rounded" />
+                <div className="py-2">
+                  <h1 className="text-[#B49C78] text-base md:text-lg">
+                    Hello World
+                  </h1>
+                </div>
+                <div className="mt-4 w-full h-48 md:h-64 relative rounded overflow-hidden">
+                  <Image
+                    src="https://res.cloudinary.com/dw8akacak/image/upload/v1753367917/Candi_Borobudur_fdscg1.jpg"
+                    alt="Candi Borobudur"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
               </div>
 
               {/* Swiper */}
-              <div>
+              <div className="w-full">
                 <Swiper
                   modules={[Pagination]}
                   pagination={{ clickable: true }}
-                  spaceBetween={20}
+                  spaceBetween={16}
                   slidesPerView={1}
                 >
-                  {[1, 2].map((i) => (
-                    <SwiperSlide key={i}>
-                      <div className="bg-white rounded-lg shadow-md p-4">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 bg-[#2780ad] rounded-full" />
-                          <div>
-                            <p className="text-sm font-medium">Lorem ipsum</p>
-                          </div>
-                        </div>
-                        <div className="mt-4 w-full h-32 relative rounded overflow-hidden">
-                          <Image
-                            src="/images/festival.jpg"
-                            alt="Festival Budaya"
-                            fill
-                            className="object-cover"
-                          />
+                  {/* Slide 1 */}
+                  <SwiperSlide>
+                    <div className="bg-white rounded-lg shadow-md p-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-10 h-10 bg-[#2780ad] rounded-full" />
+                        <div>
+                          <p className="text-sm font-bold text-[#B49C78]">
+                            Ricos
+                          </p>
+                          <p className="text-xs text-[#E2D8CC]">
+                            Pemerhati Budaya
+                          </p>
                         </div>
                       </div>
-                    </SwiperSlide>
-                  ))}
+                      <div className="py-2">
+                        <h1 className="text-[#B49C78] text-base md:text-lg">
+                          Hello World
+                        </h1>
+                      </div>
+                      <div className="mt-4 w-full h-48 md:h-64 relative rounded overflow-hidden">
+                        <Image
+                          src="https://res.cloudinary.com/dw8akacak/image/upload/v1753367949/Prambanan_Temple_Yogyakarta_Indonesia_ybpphc.jpg"
+                          alt="Candi Prambanan"
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+
+                  {/* Slide 2 */}
+                  <SwiperSlide>
+                    <div className="relative w-full h-64 md:h-96 rounded rounded-4xl overflow-hidden">
+                      <Image
+                        src="https://res.cloudinary.com/dw8akacak/image/upload/v1753392823/bali_upacara_x3yimf.png"
+                        alt="Pelestarian Kebudayaan"
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white text-center">
+                        <h2 className="text-lg md:text-2xl font-medium">
+                          “Kebudayaan harus hidup dalam keseharian, <br />
+                          bukan disimpan dalam museum saja.”
+                        </h2>
+                        <button className="mt-4 px-6 py-3 bg-white/40 backdrop-blur-md text-white hover:bg-[#433D3D] rounded-full text-sm">
+                          Daftar
+                        </button>
+                      </div>
+                    </div>
+                  </SwiperSlide>
                 </Swiper>
               </div>
-            </section>
+            </motion.section>
 
             {/* Footer Card */}
-            <section className="px-6 py-8">
-              <h3 className="text-lg font-semibold text-[#2780ad] mb-4">
-                Lorem ipsum dolor sit amet
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-                {[...Array(6)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="bg-gray-700 h-40 rounded text-white text-xs p-2 flex flex-col justify-end"
-                  >
-                    <span>Nama Budaya</span>
-                    <span>Nama Daerah</span>
-                    <span className="text-gray-300">Kategori Kebudayaan</span>
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="space-y-10 px-6 py-10"
+            >
+              {/* ANIMASI KE KIRI */}
+              <div className="overflow-hidden group relative">
+                <div className="flex w-[200%] animate-left-marquee group-hover:[animation-play-state:paused] gap-6 items-center">
+                  <div className="flex gap-6">
+                    <BudayaCard
+                      key="t1"
+                      namaBudaya="Tari Piring"
+                      namaDaerah="Sumatra Barat"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753367939/Tari_Piring_dan_Pecahan_Kaca_o1sld3.jpg "
+                    />
+                    <BudayaCard
+                      key="t2"
+                      namaBudaya="Tari Nguri"
+                      namaDaerah="NTB"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753382781/NTB-tarian-nguri-417b1bc5116ee8c5d401b428355ab421_am4eoh_v6z8gc.png"
+                    />
+                    <BudayaCard
+                      key="t3"
+                      namaBudaya="Tari Kebagh"
+                      namaDaerah="Sumatera Selatan"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370595/Sumsel_Tari_Kebagh__2017_1_alofqr.jpg"
+                    />
+                    <BudayaCard
+                      key="t4"
+                      namaBudaya="Tari Jaipin Sigam"
+                      namaDaerah="Kalimantan Selatan"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370451/Kalsel_Tari_Japin_Sigam_nhmydj.jpg"
+                    />
+                    <BudayaCard
+                      key="t5"
+                      namaBudaya="Tari Giring Giring"
+                      namaDaerah="Kalimantan Tengah"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370448/Tari_Giring-Giring_Kalteng_ey1nmu.jpg"
+                    />
+                    <BudayaCard
+                      key="t6"
+                      namaBudaya="Tari Tor Tor"
+                      namaDaerah="Sumatera Utara"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370460/Sumut_Tor-Tor_Pose_svw5x3.jpg"
+                    />
+                    <BudayaCard
+                      key="t7"
+                      namaBudaya="Tari Melinting"
+                      namaDaerah="Lampung"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370750/Lampung_Tari_Melinting_tklync.jpg"
+                    />
+                    <BudayaCard
+                      key="t8"
+                      namaBudaya="Tari Rampang Beduk"
+                      namaDaerah="Banten"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753382781/Banteng_tari-rampak-beduk-980e-dom_ibu2ra_ftynwk.png"
+                    />
+                    <BudayaCard
+                      key="t9"
+                      namaBudaya="Tari Soya Soya"
+                      namaDaerah="Maluku Utara"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370899/Tari-Soya-Soya-Maluku-Utara.-republika_uojaxj.jpg"
+                    />
+                    <BudayaCard
+                      key="t10"
+                      namaBudaya="Tari Dana Dana"
+                      namaDaerah="Gorontalo"
+                      kategori="Tari Tradisional"
+                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Gorontalo_Tari_Dana-Dana_nxud0l.jpg"
+                    />
                   </div>
-                ))}
+                </div>
               </div>
-            </section>
+              <style jsx>{`
+                @keyframes left-marquee {
+                  0% {
+                    transform: translateX(0%);
+                  }
+                  100% {
+                    transform: translateX(-50%);
+                  }
+                }
+
+                @keyframes right-marquee {
+                  0% {
+                    transform: translateX(-50%);
+                  }
+                  100% {
+                    transform: translateX(0%);
+                  }
+                }
+
+                .animate-left-marquee {
+                  animation: left-marquee 40s linear infinite;
+                }
+
+                .animate-right-marquee {
+                  animation: right-marquee 40s linear infinite;
+                }
+              `}</style>
+            </motion.div>
 
             {/* Footer */}
             <footer className="text-center text-xs text-gray-500 py-6">
