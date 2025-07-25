@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Heart, User } from "lucide-react";
+import { Heart, MessageCircle, User } from "lucide-react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import CommentSection from "./CommentSection";
@@ -129,23 +129,25 @@ export default function CultureCard({
           </p>
         </div>
 
-        <div className="ml-12 mt-3 flex gap-6 text-sm text-gray-500 items-center">
+        <div className="ml-12 mt-3 flex gap-6 text-sm text-white items-center">
           <button
             onClick={toggleLike}
             className="flex items-center gap-1 hover:text-red-500 transition"
           >
             <Heart
               className={`w-4 h-4 ${
-                liked ? "text-red-500 fill-red-500" : "text-gray-400"
+                liked ? "text-red-500 fill-red-500" : "text-white"
               }`}
             />
             {likeCount}
           </button>
           <span
-            className="hover:text-[#E2D8CC] cursor-pointer"
+            className="flex items-center gap-1 hover:text-[#E2D8CC] cursor-pointer"
             onClick={() => setIsCommentModalOpen(true)}
           >
-            💬 {commentCount}
+            <MessageCircle
+              className={"w-4 h-4"}
+            /> {commentCount}
           </span>
         </div>
         {showComments && (
@@ -157,10 +159,10 @@ export default function CultureCard({
         )}
       </div>
       {isCommentModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed min-h-screen inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 max-w-lg w-full relative">
             <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
+              className="absolute top-2 right-2 text-black hover:text-red-500"
               onClick={() => setIsCommentModalOpen(false)}
             >
               ✕
