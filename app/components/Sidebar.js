@@ -96,10 +96,7 @@ export default function Sidebar() {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link href="/search">
-            <Search size={16} className="text-white" />
-          </Link>
-          <Link href="/dashboard/tambah">
+          <Link href="/tambah">
             <PlusIcon size={16} className="text-white" />
           </Link>
         </div>
