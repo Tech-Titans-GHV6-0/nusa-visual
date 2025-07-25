@@ -209,7 +209,7 @@ export default function Sidebar() {
               onClick={() => {
                 signOut({ redirect: false }).then(() => {
                   toast.success("Logout successful!");
-                  router.push("/auth/login");
+                  router.push("/");
                 });
               }}
               onMouseEnter={() => setHovered("logout")}
