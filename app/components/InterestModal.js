@@ -38,13 +38,13 @@ export default function InterestModal({ onClose }) {
       });
 
       if (res.ok) {
-        toast.success("Minat kamu berhasil disimpan!");
+        toast.success("Your interest has been successfully saved!");
         onClose();
       } else {
-        toast.error("Terjadi kesalahan pada server.");
+        toast.error("An error occurred on the server.");
       }
     } catch (err) {
-      console.error("Error menyimpan minat:", err);
+      console.error("Error saving interests:", err);
     }
   };
 

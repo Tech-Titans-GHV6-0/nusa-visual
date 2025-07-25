@@ -135,7 +135,7 @@ export default function HomePage() {
       {session ? <Sidebar /> : <Navbar />}
 
       {/* Main Content */}
-      <main className="flex-1 h-screen overflow-y-auto pt-[25px] md:mt-0">
+      <main className="flex-1 h-screen overflow-y-auto mt-[25px] md:mt-0">
         {session ? (
           <>
             <div>
