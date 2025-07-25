@@ -17,9 +17,10 @@ export function Providers({ children }) {
 
     return () => clearTimeout(timer);
   }, [pathname]);
+
   return (
-    <div>
-      {loading ? <Loader /> : <SessionProvider>{children}</SessionProvider>}
-    </div>
+    <SessionProvider>
+      {loading ? <Loader /> : children}
+    </SessionProvider>
   );
 }

@@ -56,6 +56,14 @@ export default function HomePage() {
   const [category, setCategory] = useState("");
   const [results, setResults] = useState([]);
 
+  // if (status === "loading") {
+  //   return (
+  //     <div className="flex items-center justify-center h-screen">
+  //       <p className="text-white">Loading...</p>
+  //     </div>
+  //   );
+  // }
+
   useEffect(() => {
     const fetchResults = async () => {
       const url = new URL("/api/search", window.location.origin);
