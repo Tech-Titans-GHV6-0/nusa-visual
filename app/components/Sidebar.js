@@ -177,7 +177,7 @@ export default function Sidebar() {
                   className="rounded-full object-cover"
                 />
               ) : (
-                <User size={16} />
+                <User size={16} className="text-[#433D3D]" />
               )}
             </motion.div>
           </Link>
