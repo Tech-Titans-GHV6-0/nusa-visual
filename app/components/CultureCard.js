@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, User } from "lucide-react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import CommentSection from "./CommentSection";
@@ -48,7 +48,7 @@ export default function CultureCard({
         if (typeof data.likeCount === "number") setLikeCount(data.likeCount);
         if (typeof data.liked === "boolean") setLiked(data.liked);
       });
-  }, [id, session?.user?.id]); 
+  }, [id, session?.user?.id]);
 
   const toggleLike = async () => {
     if (!session?.user?.id) return;
@@ -64,8 +64,8 @@ export default function CultureCard({
 
     if (response.ok) {
       const result = await response.json();
-      setLiked(result.liked); 
-      setLikeCount(result.likeCount); 
+      setLiked(result.liked);
+      setLikeCount(result.likeCount);
     }
   };
 
@@ -85,17 +85,23 @@ export default function CultureCard({
     return `${days}d ago`;
   };
 
+  const isDefault =
+    !user?.avatar ||
+    user.avatar ===
+      "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png";
+
   return (
     <>
       <div className="text-[#B49C78] rounded-2xl p-4 w-full">
         <div className="flex items-start gap-3 mb-3 mt-3">
           <Image
-            src={user?.avatar}
+            src={isDefault ? defaultAvatar : user.avatar}
+            alt="Avatar"
             width={40}
             height={40}
-            alt={user?.name}
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-10 h-10 rounded-full object-cover bg-gray-200"
           />
+
           <div className="flex flex-col">
             <span className="font-semibold">{user?.name}</span>
             <span className="text-sm text-white">

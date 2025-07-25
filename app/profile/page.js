@@ -25,7 +25,7 @@ export default function ProfilePage() {
       setFormData({
         name: data.name,
         email: data.email,
-        avatar: data.avatar || "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png",
+        avatar: data.avatar,
         region: data.region,
         origin: data.origin,
         interests: data.interests || [],
@@ -72,7 +72,7 @@ export default function ProfilePage() {
         <div className="flex items-center gap-4 p-4 rounded-lg shadow bg-[#E2D8CC]">
           <div className="relative">
             <Image
-              src={formData.avatar}
+              src={formData.avatar || "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png"}
               alt="Avatar"
               width={96}
               height={96}
