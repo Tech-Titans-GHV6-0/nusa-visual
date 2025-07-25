@@ -12,7 +12,6 @@ import { Pagination } from "swiper/modules";
 import CultureCard from "./components/CultureCard";
 import Navbar from "./components/Navbar";
 import GreetingCard from "./components/GreetingCard";
-import CategoryFilter from "./components/DraggableCategory";
 import DraggableCategory from "./components/DraggableCategory";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -26,17 +25,19 @@ function BudayaCard({ namaBudaya, namaDaerah, kategori, imageUrl }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: `url(${imageUrl})` }}
+      <Image
+        src={imageUrl}
+        alt={namaBudaya}
+        fill
+        className="object-cover object-center"
+        priority={true} 
       />
 
       {/* Overlay gelap */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/50 z-10" />
 
       {/* Konten */}
-      <div className="relative z-10 p-3 flex flex-col justify-end h-full">
+      <div className="relative z-20 p-3 flex flex-col justify-end h-full">
         <span className="text-sm font-semibold">{namaBudaya}</span>
         <span className="text-xs">{namaDaerah}</span>
         <span className="text-[10px] text-gray-200 mt-1 border border-gray-300 rounded-full px-2 py-[2px] w-fit">
@@ -55,14 +56,6 @@ export default function HomePage() {
   const [filteredData, setFilteredData] = useState(data);
   const [category, setCategory] = useState("");
   const [results, setResults] = useState([]);
-
-  // if (status === "loading") {
-  //   return (
-  //     <div className="flex items-center justify-center h-screen">
-  //       <p className="text-white">Loading...</p>
-  //     </div>
-  //   );
-  // }
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -138,7 +131,7 @@ export default function HomePage() {
   }, [status]);
 
   return (
-    <div className="flex min-h-screen bg-[#433D3D] mt-12 md:mt-0">
+    <div className="flex min-h-screen bg-[#433D3D] pt-12 md:pt-0">
       {session ? <Sidebar /> : <Navbar />}
 
       {/* Main Content */}
@@ -177,14 +170,21 @@ export default function HomePage() {
         ) : (
           <>
             <motion.section
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ staggerChildren: 0.1 }}
               viewport={{ once: true, amount: 0.2 }}
               className="min-h-screen flex flex-col md:flex-row items-center justify-between gap-6 w-full px-4"
             >
               {/* KIRI: Text dan button Eksplor */}
-              <div className="w-full md:w-1/2 md:justify-start">
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 40 },
+                  visible: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.6 }}
+                className="w-full md:w-1/2 md:justify-start"
+              >
                 <h1 className="text-2xl md:text-3xl font-bold text-[#B49C78] leading-tight">
                   Nusa Visual <br />
                   <span className="text-[#E2D8CC]">
@@ -197,10 +197,12 @@ export default function HomePage() {
                   warisan tak lagi sekadar arsip, tapi sesuatu yang terus
                   bernapas.
                 </p>
-                <button className="mt-4 bg-[#B49C78] hover:bg-[#E2D8CC] hover:text-[#B49C78] text-white px-6 py-2 rounded-full text-sm">
-                  Eksplor Sekarang
-                </button>
-              </div>
+                <Link href="/login">
+                  <button className="mt-4 bg-[#B49C78] hover:bg-[#E2D8CC] hover:text-[#B49C78] text-white px-6 py-2 rounded-full text-sm">
+                    Eksplor Sekarang
+                  </button>
+                </Link>
+              </motion.div>
 
               {/* KANAN: 4 Kotak */}
               {/* KANAN: 4 Gambar Kotak */}
@@ -253,19 +255,14 @@ export default function HomePage() {
               </div>
             </motion.section>
 
-            <motion.section
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="px-6 py-8"
-            >
+            <section className="px-6 py-8">
               <p className="text-[#B49C78]">
                 Eksplorasi kekayaan warisan Nusantara
               </p>
               <h3 className="text-lg md:text-3xl font-semibold text-[#E2D8CC]">
                 Jelajahi kearifan lokal
               </h3>
+
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                 {[
                   {
@@ -289,26 +286,29 @@ export default function HomePage() {
                       "https://res.cloudinary.com/dw8akacak/image/upload/v1753391161/Tarian_Anak_di_Atas_Perahu_Pacu_Jalur_Viral_dan_Mendunia_Begini_Sejarahnya_n4fae2.jpg",
                   },
                 ].map((item, i) => (
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    viewport={{ once: true, amount: 0.2 }}
+                  <div
                     key={i}
-                    className="relative h-100 rounded-2xl overflow-hidden shadow-md border border-[#B49C78] flex items-end justify-start"
-                    style={{
-                      backgroundImage: `url(${item.image})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
+                    className="relative h-40 md:h-56 rounded-2xl overflow-hidden shadow-md border border-[#B49C78] flex items-end justify-start bg-gray-200"
                   >
-                    <div className="bg-white/40 backdrop-blur-md text-white text-sm font-medium px-3 py-1 rounded-full m-4">
+                    {/* Lazy load img for preloading background */}
+                    <Image
+                      src={item.image}
+                      alt={item.label}
+                      priority={true}
+                      fill
+                      className="absolute w-0 h-0 opacity-0"
+                    />
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-all duration-500"
+                      style={{ backgroundImage: `url(${item.image})` }}
+                    />
+                    <div className="bg-white/40 backdrop-blur-md text-white text-sm font-medium px-3 py-1 rounded-full m-4 z-10">
                       {item.label}
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.section>
+            </section>
 
             <motion.div
               initial={{ opacity: 0, y: 50 }}
@@ -404,9 +404,11 @@ export default function HomePage() {
                           “Kebudayaan harus hidup dalam keseharian, <br />
                           bukan disimpan dalam museum saja.”
                         </h2>
-                        <button className="mt-4 px-6 py-3 bg-white/40 backdrop-blur-md text-white hover:bg-[#433D3D] rounded-full text-sm">
-                          Daftar
-                        </button>
+                        <Link href="/register">
+                          <button className="mt-4 px-6 py-3 bg-white/40 backdrop-blur-md text-white hover:bg-[#433D3D] rounded-full text-sm">
+                            Daftar
+                          </button>
+                        </Link>
                       </div>
                     </div>
                   </SwiperSlide>
@@ -414,121 +416,110 @@ export default function HomePage() {
               </div>
             </motion.section>
 
-            {/* Footer Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              className="space-y-10 px-6 py-10"
-            >
-              {/* ANIMASI KE KIRI */}
-              <div className="overflow-hidden group relative">
-                <div className="flex w-[200%] animate-left-marquee group-hover:[animation-play-state:paused] gap-6 items-center">
-                  <div className="flex gap-6">
-                    <BudayaCard
-                      key="t1"
-                      namaBudaya="Tari Piring"
-                      namaDaerah="Sumatra Barat"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753367939/Tari_Piring_dan_Pecahan_Kaca_o1sld3.jpg "
-                    />
-                    <BudayaCard
-                      key="t2"
-                      namaBudaya="Tari Nguri"
-                      namaDaerah="NTB"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753382781/NTB-tarian-nguri-417b1bc5116ee8c5d401b428355ab421_am4eoh_v6z8gc.png"
-                    />
-                    <BudayaCard
-                      key="t3"
-                      namaBudaya="Tari Kebagh"
-                      namaDaerah="Sumatera Selatan"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370595/Sumsel_Tari_Kebagh__2017_1_alofqr.jpg"
-                    />
-                    <BudayaCard
-                      key="t4"
-                      namaBudaya="Tari Jaipin Sigam"
-                      namaDaerah="Kalimantan Selatan"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370451/Kalsel_Tari_Japin_Sigam_nhmydj.jpg"
-                    />
-                    <BudayaCard
-                      key="t5"
-                      namaBudaya="Tari Giring Giring"
-                      namaDaerah="Kalimantan Tengah"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370448/Tari_Giring-Giring_Kalteng_ey1nmu.jpg"
-                    />
-                    <BudayaCard
-                      key="t6"
-                      namaBudaya="Tari Tor Tor"
-                      namaDaerah="Sumatera Utara"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370460/Sumut_Tor-Tor_Pose_svw5x3.jpg"
-                    />
-                    <BudayaCard
-                      key="t7"
-                      namaBudaya="Tari Melinting"
-                      namaDaerah="Lampung"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370750/Lampung_Tari_Melinting_tklync.jpg"
-                    />
-                    <BudayaCard
-                      key="t8"
-                      namaBudaya="Tari Rampang Beduk"
-                      namaDaerah="Banten"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753382781/Banteng_tari-rampak-beduk-980e-dom_ibu2ra_ftynwk.png"
-                    />
-                    <BudayaCard
-                      key="t9"
-                      namaBudaya="Tari Soya Soya"
-                      namaDaerah="Maluku Utara"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370899/Tari-Soya-Soya-Maluku-Utara.-republika_uojaxj.jpg"
-                    />
-                    <BudayaCard
-                      key="t10"
-                      namaBudaya="Tari Dana Dana"
-                      namaDaerah="Gorontalo"
-                      kategori="Tari Tradisional"
-                      imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Gorontalo_Tari_Dana-Dana_nxud0l.jpg"
-                    />
-                  </div>
+            <div className="overflow-hidden group relative">
+              <div className="flex w-[200%] animate-left-marquee group-hover:[animation-play-state:paused] gap-6 items-center">
+                <div className="flex gap-6">
+                  <BudayaCard
+                    key="t1"
+                    namaBudaya="Tari Piring"
+                    namaDaerah="Sumatra Barat"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753367939/Tari_Piring_dan_Pecahan_Kaca_o1sld3.jpg "
+                  />
+                  <BudayaCard
+                    key="t2"
+                    namaBudaya="Tari Nguri"
+                    namaDaerah="NTB"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753382781/NTB-tarian-nguri-417b1bc5116ee8c5d401b428355ab421_am4eoh_v6z8gc.png"
+                  />
+                  <BudayaCard
+                    key="t3"
+                    namaBudaya="Tari Kebagh"
+                    namaDaerah="Sumatera Selatan"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370595/Sumsel_Tari_Kebagh__2017_1_alofqr.jpg"
+                  />
+                  <BudayaCard
+                    key="t4"
+                    namaBudaya="Tari Jaipin Sigam"
+                    namaDaerah="Kalimantan Selatan"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370451/Kalsel_Tari_Japin_Sigam_nhmydj.jpg"
+                  />
+                  <BudayaCard
+                    key="t5"
+                    namaBudaya="Tari Giring Giring"
+                    namaDaerah="Kalimantan Tengah"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370448/Tari_Giring-Giring_Kalteng_ey1nmu.jpg"
+                  />
+                  <BudayaCard
+                    key="t6"
+                    namaBudaya="Tari Tor Tor"
+                    namaDaerah="Sumatera Utara"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370460/Sumut_Tor-Tor_Pose_svw5x3.jpg"
+                  />
+                  <BudayaCard
+                    key="t7"
+                    namaBudaya="Tari Melinting"
+                    namaDaerah="Lampung"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370750/Lampung_Tari_Melinting_tklync.jpg"
+                  />
+                  <BudayaCard
+                    key="t8"
+                    namaBudaya="Tari Rampang Beduk"
+                    namaDaerah="Banten"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753382781/Banteng_tari-rampak-beduk-980e-dom_ibu2ra_ftynwk.png"
+                  />
+                  <BudayaCard
+                    key="t9"
+                    namaBudaya="Tari Soya Soya"
+                    namaDaerah="Maluku Utara"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370899/Tari-Soya-Soya-Maluku-Utara.-republika_uojaxj.jpg"
+                  />
+                  <BudayaCard
+                    key="t10"
+                    namaBudaya="Tari Dana Dana"
+                    namaDaerah="Gorontalo"
+                    kategori="Tari Tradisional"
+                    imageUrl="https://res.cloudinary.com/dw8akacak/image/upload/v1753370430/Gorontalo_Tari_Dana-Dana_nxud0l.jpg"
+                  />
                 </div>
               </div>
-              <style jsx>{`
-                @keyframes left-marquee {
-                  0% {
-                    transform: translateX(0%);
-                  }
-                  100% {
-                    transform: translateX(-50%);
-                  }
+            </div>
+            <style jsx>{`
+              @keyframes left-marquee {
+                0% {
+                  transform: translateX(0%);
                 }
-
-                @keyframes right-marquee {
-                  0% {
-                    transform: translateX(-50%);
-                  }
-                  100% {
-                    transform: translateX(0%);
-                  }
+                100% {
+                  transform: translateX(-50%);
                 }
+              }
 
-                .animate-left-marquee {
-                  animation: left-marquee 40s linear infinite;
+              @keyframes right-marquee {
+                0% {
+                  transform: translateX(-50%);
                 }
-
-                .animate-right-marquee {
-                  animation: right-marquee 40s linear infinite;
+                100% {
+                  transform: translateX(0%);
                 }
-              `}</style>
-            </motion.div>
+              }
 
-            {/* Footer */}
+              .animate-left-marquee {
+                animation: left-marquee 40s linear infinite;
+              }
+
+              .animate-right-marquee {
+                animation: right-marquee 40s linear infinite;
+              }
+            `}</style>
+
             <footer className="text-center text-xs text-gray-500 py-6">
               © 2025 Tech Titans GarudaHacks 6.0
             </footer>
