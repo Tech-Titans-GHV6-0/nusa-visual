@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Sidebar from "./components/Sidebar";
@@ -15,7 +14,7 @@ import GreetingCard from "./components/GreetingCard";
 import DraggableCategory from "./components/DraggableCategory";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import ScrollToCardById from "./components/ScrollToCardById";
 
 function BudayaCard({ namaBudaya, namaDaerah, kategori, imageUrl }) {
   return (
@@ -57,30 +56,6 @@ export default function HomePage() {
   const [filteredData, setFilteredData] = useState(data);
   const [category, setCategory] = useState("");
   const [results, setResults] = useState([]);
-  const searchParams = useSearchParams();
-  const targetId = searchParams.get("id");
-
-  useEffect(() => {
-    if (!targetId) return;
-
-    const scrollToElement = () => {
-      const el = document.getElementById(`culture-${targetId}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
-        return true;
-      }
-      return false;
-    };
-
-    let attempts = 0;
-    const interval = setInterval(() => {
-      const found = scrollToElement();
-      attempts++;
-      if (found || attempts > 30) clearInterval(interval); // 3 detik max
-    }, 100);
-
-    return () => clearInterval(interval);
-  }, [targetId]);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -171,6 +146,7 @@ export default function HomePage() {
                 </p>
               ) : (
                 <>
+                <ScrollToCardById />
                   <DraggableCategory
                     onChange={handleCategorySelect}
                     selected={selectedCategory}
