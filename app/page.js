@@ -15,6 +15,7 @@ import GreetingCard from "./components/GreetingCard";
 import CategoryFilter from "./components/DraggableCategory";
 import DraggableCategory from "./components/DraggableCategory";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 function BudayaCard({ namaBudaya, namaDaerah, kategori, imageUrl }) {
   return (
@@ -99,7 +100,7 @@ export default function HomePage() {
     "Festival Budaya",
     "Kerajinan Tangan",
     "Rumah Adat",
-    "Permainan Tradisional"
+    "Permainan Tradisional",
   ];
 
   useEffect(() => {
@@ -129,7 +130,7 @@ export default function HomePage() {
   }, [status]);
 
   return (
-    <div className="flex min-h-screen bg-[#433D3D]">
+    <div className="flex min-h-screen bg-[#433D3D] mt-12 md:mt-0">
       {session ? <Sidebar /> : <Navbar />}
 
       {/* Main Content */}
@@ -235,9 +236,11 @@ export default function HomePage() {
                     “Pelestarian budaya bukan tugas segelintir orang, <br />{" "}
                     kolaborasi kamu bisa jadi alasan ia tetap hidup.”
                   </h2>
-                  <button className="mt-4 px-4 py-3 bg-white/40 backdrop-blur-md text-white hover:bg-[#433D3D] rounded-full text-sm">
-                    Bergabung sekarang
-                  </button>
+                  <Link href="/login">
+                    <button className="mt-4 px-4 py-3 bg-white/40 backdrop-blur-md text-white hover:bg-[#433D3D] rounded-full text-sm">
+                      Bergabung sekarang
+                    </button>
+                  </Link>
                 </div>
               </div>
             </motion.section>

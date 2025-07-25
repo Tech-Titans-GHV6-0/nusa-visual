@@ -25,7 +25,7 @@ export default function ProfilePage() {
       setFormData({
         name: data.name,
         email: data.email,
-        avatar: data.avatar || "/default-avatar.png",
+        avatar: data.avatar || "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png",
         region: data.region,
         origin: data.origin,
         interests: data.interests || [],
