@@ -90,6 +90,8 @@ export default function CultureCard({
     user.avatar ===
       "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png";
 
+    const defaultAvatar = "https://res.cloudinary.com/dw8akacak/image/upload/v1753406528/default_avatar_ycdtxc.png";
+
   return (
     <>
       <div className="text-[#B49C78] rounded-2xl p-4 w-full">
